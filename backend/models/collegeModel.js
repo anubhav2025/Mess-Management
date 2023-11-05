@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const collegeSchema = new mongoose.Schema(
   {
-    college_name: {
+    collegeName: {
       type: String,
       required: true,
     },
@@ -10,11 +10,11 @@ const collegeSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    admin_fname: {
+    adminFname: {
       type: String,
       required: true,
     },
-    admin_lname: {
+    adminLname: {
       type: String,
       required: true,
     },

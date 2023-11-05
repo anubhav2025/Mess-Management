@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const calorieSchema = new mongoose.Schema(
   {
-    student_id: {
+    studentId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Student",
     },
-    current_month: {
+    currentMonth: {
       type: String,
       enum: [
         "January",
@@ -24,7 +24,7 @@ const calorieSchema = new mongoose.Schema(
         "December",
       ],
     },
-    current_sem: {
+    currentSem: {
       type: Number,
       required: true,
     },
@@ -32,7 +32,7 @@ const calorieSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    last_month: {
+    lastMonth: {
       type: Number,
       required: true,
     },

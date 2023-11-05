@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const wardenSchema = new mongoose.Schema(
   {
-    college_id: {
+    collegeId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "College",
@@ -32,7 +32,7 @@ const wardenSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    pending_requests: {
+    pendingRequests: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Request",

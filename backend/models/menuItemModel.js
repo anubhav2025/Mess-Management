@@ -16,9 +16,9 @@ const reviewSchema = mongoose.Schema(
   }
 );
 
-const MenuItemSchema = new mongoose.Schema(
+const menuItemSchema = new mongoose.Schema(
   {
-    menu_id: {
+    menuId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Menu",
@@ -53,5 +53,5 @@ const MenuItemSchema = new mongoose.Schema(
   }
 );
 
-const MenuItem = mongoose.model("Menu_Item", MenuSchema);
+const MenuItem = mongoose.model("MenuItem", menuItemSchema);
 export default MenuItem;

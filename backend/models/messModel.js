@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const messSchema = new mongoose.Schema(
   {
-    college_id: {
+    collegeId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "College",
@@ -11,32 +11,32 @@ const messSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    //warden changed to warden_id
-    warden_id: {
+    // warden changed to wardenId
+    wardenId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Warden",
     },
-    storekeeper_id: {
+    storekeeperId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Storekeeper",
     },
-    accountant_id: {
+    accountantId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Accountant",
     },
-    student_manager_id: {
+    studentManagerId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Mess",
     },
-    hostel_name: {
+    hostelName: {
       type: String,
       required: true,
     },
-    menu_id: {
+    menuId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Menu",

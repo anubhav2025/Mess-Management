@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const stockItemSchema = new mongoose.Schema(
   {
-    storekeeper_id: {
+    storekeeperId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Storekeeper",
     },
-    mess_id: {
+    messId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Mess",
@@ -16,11 +16,11 @@ const stockItemSchema = new mongoose.Schema(
     //   type: String,
     //   required: true,
     // },
-    food_items: [
+    foodItems: [
       {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: "Food_Item",
+        ref: "FoodItem",
       },
     ],
   },
@@ -29,5 +29,5 @@ const stockItemSchema = new mongoose.Schema(
   }
 );
 
-const StockItem = mongoose.model("Stock_Item", stockItemSchema);
+const StockItem = mongoose.model("StockItem", stockItemSchema);
 export default StockItem;

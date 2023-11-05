@@ -6,7 +6,7 @@ const foodItemSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    price_per_qty: {
+    pricePerQty: {
       type: Number,
       required: true,
     },
@@ -20,5 +20,5 @@ const foodItemSchema = new mongoose.Schema(
   }
 );
 
-const FoodItem = mongoose.model("Food_Item", foodItemSchema);
+const FoodItem = mongoose.model("FoodItem", foodItemSchema);
 export default FoodItem;

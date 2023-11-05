@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const commentSchema = new mongoose.Schema(
   {
-    complaint_id: {
+    complaintId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Complaint",
     },
-    student_id: {
+    studentId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Student",

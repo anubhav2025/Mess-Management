@@ -7,7 +7,7 @@ const expenseItemSchema = new mongoose.Schema(
       required: true,
     },
 
-    expense_type: {
+    expenseType: {
       type: String,
       enum: ["worker_salary", "order_item", "other"],
     },
@@ -21,5 +21,5 @@ const expenseItemSchema = new mongoose.Schema(
   }
 );
 
-const ExpenseItem = mongoose.model("Expense_Item", expenseItemSchema);
+const ExpenseItem = mongoose.model("ExpenseItem", expenseItemSchema);
 export default ExpenseItem;

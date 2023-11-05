@@ -2,27 +2,27 @@ import mongoose from "mongoose";
 
 const orderItemSchema = new mongoose.Schema(
   {
-    mess_id: {
+    messId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Mess",
     },
-    expense_id: {
+    expenseId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "Expense_Item",
+      ref: "ExpenseItem",
     },
-    storekeeper_id: {
+    storekeeperId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Storekeeper",
     },
-    order_items: [
+    orderItems: [
       {
-        food_item: {
+        foodItem: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
-          ref: "Food_Item",
+          ref: "FoodItem",
         },
       },
     ],
@@ -32,5 +32,5 @@ const orderItemSchema = new mongoose.Schema(
   }
 );
 
-const OrderItem = mongoose.model("Order_Item", orderItemSchema);
+const OrderItem = mongoose.model("OrderItem", orderItemSchema);
 export default OrderItem;

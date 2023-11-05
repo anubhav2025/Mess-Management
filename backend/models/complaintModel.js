@@ -2,18 +2,18 @@ import mongoose from "mongoose";
 
 const complaintSchema = new mongoose.Schema(
   {
-    college_id: {
+    collegeId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "College",
     },
-    student_id: {
+    studentId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Student",
     },
-    // item assosiated?
-    item_id: {
+    // item associated?
+    itemId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Food_Item",

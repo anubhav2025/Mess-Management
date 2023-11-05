@@ -24,7 +24,7 @@ const superAdminSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
-    pending_requests: {
+    pendingRequests: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Request",
@@ -35,5 +35,5 @@ const superAdminSchema = new mongoose.Schema(
   }
 );
 
-const SuperAdmin = mongoose.model("Super_Admin", superAdminSchema);
+const SuperAdmin = mongoose.model("SuperAdmin", superAdminSchema);
 export default SuperAdmin;

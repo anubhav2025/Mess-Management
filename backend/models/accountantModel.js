@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const accountantSchema = new mongoose.Schema(
   {
-    mess_id: {
+    messId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Mess",
     },
-    warden_id: {
+    wardenId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Warden",
@@ -37,13 +37,13 @@ const accountantSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    pending_requests_from_down: {
+    pendingRequestsFromDown: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Request",
     },
     // will both the request come from same request model
-    requests_for_approval: {
+    requestsForApproval: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Request",

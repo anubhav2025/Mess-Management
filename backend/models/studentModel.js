@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const superAdminSchema = new mongoose.Schema(
+const studentSchema = new mongoose.Schema(
   {
-    mess_id: {
+    messId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Mess",
@@ -40,22 +40,22 @@ const superAdminSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    complaints_last_30_days: [
+    complaintsLast30Days: [
       {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "Complaint",
       },
     ],
-    // calories_taken
-    block_status: {
-      type: bool,
+    // caloriesTaken
+    blockStatus: {
+      type: Boolean,
       default: false,
     },
-    blocked_till: {
+    blockedTill: {
       type: Date,
     },
-    // id_expires_at: {
+    // idExpiresAt: {
     //   type: Date,
     // },
   },
@@ -64,5 +64,5 @@ const superAdminSchema = new mongoose.Schema(
   }
 );
 
-const SuperAdmin = mongoose.model("Super_Admin", superAdminSchema);
-export default SuperAdmin;
+const Student = mongoose.model("Student", studentSchema);
+export default Student;

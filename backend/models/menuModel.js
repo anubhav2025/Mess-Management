@@ -1,72 +1,72 @@
 import mongoose from "mongoose";
 
-const MenuSchema = new mongoose.Schema(
+const menuSchema = new mongoose.Schema(
   {
-    mess_id: {
+    messId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Mess",
     },
     monday: [
       {
-        menu_item: {
+        menuItem: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
-          ref: "Menu_Item",
+          ref: "MenuItem",
         },
       },
     ],
     tuesday: [
       {
-        menu_item: {
+        menuItem: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
-          ref: "Menu_Item",
+          ref: "MenuItem",
         },
       },
     ],
     wednesday: [
       {
-        menu_item: {
+        menuItem: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
-          ref: "Menu_Item",
+          ref: "MenuItem",
         },
       },
     ],
     thursday: [
       {
-        menu_item: {
+        menuItem: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
-          ref: "Menu_Item",
+          ref: "MenuItem",
         },
       },
     ],
     friday: [
       {
-        menu_item: {
+        menuItem: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
-          ref: "Menu_Item",
+          ref: "MenuItem",
         },
       },
     ],
     saturday: [
       {
-        menu_item: {
+        menuItem: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
-          ref: "Menu_Item",
+          ref: "MenuItem",
         },
       },
     ],
     sunday: [
       {
-        menu_item: {
+        menuItem: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
-          ref: "Menu_Item",
+          ref: "MenuItem",
         },
       },
     ],
@@ -76,5 +76,5 @@ const MenuSchema = new mongoose.Schema(
   }
 );
 
-const Menu = mongoose.model("Menu", MenuSchema);
+const Menu = mongoose.model("Menu", menuSchema);
 export default Menu;
