@@ -42,6 +42,11 @@ const MenuItemSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
+    // added calories
+    calories: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,

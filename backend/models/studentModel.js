@@ -55,9 +55,9 @@ const superAdminSchema = new mongoose.Schema(
     blocked_till: {
       type: Date,
     },
-    id_expires_at: {
-      type: Date,
-    },
+    // id_expires_at: {
+    //   type: Date,
+    // },
   },
   {
     timestamps: true,
