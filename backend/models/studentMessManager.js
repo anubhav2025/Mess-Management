@@ -1,28 +1,21 @@
 import mongoose from "mongoose";
-import Mess from "./messModel";
-import College from "./collegeModel";
 
-const wardenSchema = new mongoose.Schema(
+const studentMessManagerSchema = new mongoose.Schema(
 	{
-		collegeId: {
-			type: mongoose.Schema.Types.ObjectId,
-			required: true,
-			ref: "College",
-		},
 		messId: {
 			type: mongoose.Schema.Types.ObjectId,
 			required: true,
 			ref: "Mess",
 		},
+		wardenId: {
+			type: mongoose.Schema.Types.ObjectId,
+			required: true,
+			ref: "Warden",
+		},
 		role: {
 			type: String,
-			default: "warden",
+			default: "studentManager",
 			immutable: true,
-		},
-
-		image: {
-			type: String,
-			required: true,
 		},
 		fname: {
 			type: String,
@@ -32,7 +25,19 @@ const wardenSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		image: {
+			type: String,
+			required: true,
+		},
 		phone: {
+			type: String,
+			required: true,
+		},
+		regno: {
+			type: String,
+			required: true,
+		},
+		roomno: {
 			type: String,
 			required: true,
 		},
@@ -45,7 +50,13 @@ const wardenSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		pendingRequests: {
+		pendingRequestsFromDown: {
+			type: mongoose.Schema.Types.ObjectId,
+			required: true,
+			ref: "Request",
+		},
+		// will both the request come from the same request model
+		requestsForApproval: {
 			type: mongoose.Schema.Types.ObjectId,
 			required: true,
 			ref: "Request",
@@ -56,5 +67,8 @@ const wardenSchema = new mongoose.Schema(
 	}
 );
 
-const Warden = mongoose.model("Warden", wardenSchema);
-export default Warden;
+const StudentMessManager = mongoose.model(
+	"StudentMessManager",
+	studentMessManagerSchema
+);
+export default StudentMessManager;
