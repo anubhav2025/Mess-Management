@@ -1,6 +1,14 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 // import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
+import {
+	Warden,
+	Storekeeper,
+	Accountant,
+	Student,
+	SuperAdmin,
+	StudentMessManager,
+} from "../models/index.js";
 
 //always use role in all camelCasing.
 
@@ -9,17 +17,26 @@ import generateToken from "../utils/generateToken.js";
 // @access  Public
 const commonAuthController = (
 	//create a different one for chief warden and superAdmin.
-	role
+	// role
 ) =>
 	asyncHandler(async (req, res) => {
 		const { email, password } = req.body;
+
+		const roleIndex = await RoleIndex.findOne({ email });
+
+		if (!roleIndex) {
+			return res.status(404).json({ error: 'Email not found' });
+		}
+
+		const role = roleIndex.role;
+
 		const roleModelMap = {
-			warden: Warden,
-			storekeeper: Storekeeper,
-			accountant: Accountant,
-			student: Student,
-			// superadmin: SuperAdmin,
-			studentmessmanager: StudentMessManager,
+			"warden": Warden,
+			"storeKeeper": Storekeeper,
+			"accountant": Accountant,
+			"student": Student,
+			"superAdmin": SuperAdmin,
+			"studentMessManager": StudentMessManager,
 		};
 		const RoleModel = roleModelMap[role];
 		const user = await RoleModel.findOne({ email });

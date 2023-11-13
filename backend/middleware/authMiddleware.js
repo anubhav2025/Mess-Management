@@ -26,15 +26,15 @@ const allowedRoles = (requiredRoles) =>
 			const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
 			const roleModelMap = {
-				warden: Warden,
-				storekeeper: Storekeeper,
-				accountant: Accountant,
-				student: Student,
-				superadmin: SuperAdmin,
-				studentmessmanager: StudentMessManager,
+				"warden": Warden,
+				"storeKeeper": Storekeeper,
+				"accountant": Accountant,
+				"student": Student,
+				"superAdmin": SuperAdmin,
+				"studentMessManager": StudentMessManager,
 			};
 
-			const RoleModel = roleModelMap[role];
+			const RoleModel = roleModelMap[decoded.role];
 
 			if (!RoleModel) {
 				return res.status(401).json({ message: "Invalid role specified" });
