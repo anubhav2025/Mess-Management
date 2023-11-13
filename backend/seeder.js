@@ -23,47 +23,48 @@ dotenv.config();
 connectDB();
 
 const importData = async () => {
-  try {
-    await Student.deleteMany();
-    await Accountant.deleteMany();
-    await College.deleteMany();
-    await Studentmanager.deleteMany();
-    await Storekeeper.deleteMany();
-    await Superadmin.deleteMany();
-    await Warden.deleteMany();
+   try {
+      // await Student.deleteMany();
+      // await Accountant.deleteMany();
+      // await College.deleteMany();
+      // await Studentmanager.deleteMany();
+      // await Storekeeper.deleteMany();
+      // await Superadmin.deleteMany();
+      // await Warden.deleteMany();
 
-    await Student.insertMany(students);
-    await Accountant.insertMany(accountants);
-    await College.insertMany(colleges);
-    await Studentmanager.insertMany(studentMessManagers);
-    await Storekeeper.insertMany(storekeepers);
-    await Superadmin.insertMany(superadmins);
-    await Warden.insertMany(wardens);
+      // await College.insertMany(colleges);
+      // await Student.insertMany(students);
+      // await Accountant.insertMany(accountants);
+      // await Studentmanager.insertMany(studentMessManagers);
+      // await Storekeeper.insertMany(storekeepers);
+      // await Superadmin.insertMany(superadmins);
+      // await Warden.insertMany(wardens);
 
-    console.log("Data Imported!".green.inverse);
-    process.exit();
-  } catch (error) {
-    console.error(`${error}`.red.inverse);
-    process.exit(1);
-  }
+      console.log("Data Imported!".green.inverse);
+      process.exit();
+   }
+   catch (error) {
+      console.error(`${error}`.red.inverse);
+      process.exit(1);
+   }
 };
 
 const destroyData = async () => {
-  try {
-    await Student.deleteMany();
-    await Accountant.deleteMany();
-    await College.deleteMany();
-    await Studentmanager.deleteMany();
-    await Storekeeper.deleteMany();
-    await Superadmin.deleteMany();
-    await Warden.deleteMany();
+   try {
+      await Student.deleteMany();
+      await Accountant.deleteMany();
+      await College.deleteMany();
+      await Studentmanager.deleteMany();
+      await Storekeeper.deleteMany();
+      await Superadmin.deleteMany();
+      await Warden.deleteMany();
 
-    console.log("Data Destroyed!".red.inverse);
-    process.exit();
-  } catch (error) {
-    console.error(`${error}`.red.inverse);
-    process.exit(1);
-  }
+      console.log("Data Destroyed!".red.inverse);
+      process.exit();
+   } catch (error) {
+      console.error(`${error}`.red.inverse);
+      process.exit(1);
+   }
 };
 
 if (process.argv[2] === "-d") destroyData();

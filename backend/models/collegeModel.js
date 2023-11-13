@@ -36,10 +36,12 @@ const collegeSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    messes: {
-      type: [String],
-      // required or not?
-    },
+    messes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Mess",
+      },
+    ],
   },
   {
     timestamps: true,

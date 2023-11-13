@@ -19,7 +19,6 @@ const wardenSchema = new mongoose.Schema(
       default: "warden",
       immutable: true,
     },
-
     image: {
       type: String,
       required: true,

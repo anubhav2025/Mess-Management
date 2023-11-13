@@ -10,7 +10,7 @@ const colleges = [
     phone: "1234567890",
     email: "admin@mnnit.com",
     password: bcrypt.hashSync("college@007", 10),
-    messes: ["Tondon", "Tilak"],
+    // messes: ["Tondon", "Tilak"],
   },
 ];
 
