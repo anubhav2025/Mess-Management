@@ -2,8 +2,8 @@ import bcrypt from "bcryptjs";
 
 const wardens = [
   {
-    // collegeId: "your-college-id",
-    // messId: "your-mess-id",
+    collegeId: "655265f7bff5333fc7e7b4a7",
+    messId: "655274b2951333d3004ce568",
     image: "/images/user.png",
     fname: "Alice",
     role: "warden",

@@ -44,11 +44,13 @@ const wardenSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    pendingRequests: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "Request",
-    },
+    pendingRequests: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        // required: true,
+        ref: "Request",
+      },
+    ],
   },
   {
     timestamps: true,

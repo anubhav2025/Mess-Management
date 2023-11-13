@@ -4,7 +4,7 @@ const messSchema = new mongoose.Schema(
   {
     collegeId: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      // required: true,
       ref: "College",
     },
     name: {
@@ -14,22 +14,22 @@ const messSchema = new mongoose.Schema(
     // warden changed to wardenId
     wardenId: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      // required: true,
       ref: "Warden",
     },
     storekeeperId: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      // required: true,
       ref: "Storekeeper",
     },
     accountantId: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      // required: true,
       ref: "Accountant",
     },
     studentManagerId: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      // required: true,
       ref: "Mess",
     },
     hostelName: {
@@ -38,7 +38,7 @@ const messSchema = new mongoose.Schema(
     },
     menuId: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      // required: true,
       ref: "Menu",
     },
   },
