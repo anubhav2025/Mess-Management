@@ -1,87 +1,38 @@
-import React, { useState } from 'react';
-import {
-  Container,
-  Paper,
-  Grid,
-  Typography,
-  Button,
-  TextField,
-} from '@mui/material';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button, Typography } from '@mui/material';
 
-const AuthPage = () => {
-  const [signIn, setSignIn] = useState(true);
+const HomeScreen = () => {
+   const containerStyle = {
+      backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+      backgroundSize: 'cover',
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px',
+   };
 
-  const handleToggle = () => {
-    setSignIn((prev) => !prev);
-  };
-
-  return (
-    <Container component="main" maxWidth="xs">
-      <Paper elevation={3} style={{ padding: '20px', marginTop: '100px' }}>
-        <Typography component="h1" variant="h5">
-          {signIn ? 'Sign In' : 'Sign Up'}
-        </Typography>
-        <form>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
-            {!signIn && (
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="confirmPassword"
-                  label="Confirm Password"
-                  type="password"
-                  id="confirmPassword"
-                  autoComplete="confirm-password"
-                />
-              </Grid>
-            )}
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            {signIn ? 'Sign In' : 'Sign Up'}
-          </Button>
-        </form>
-        <Grid container justifyContent="flex-end">
-          <Grid item>
-            <Button onClick={handleToggle}>
-              {signIn
-                ? 'Don\'t have an account? Sign Up'
-                : 'Already have an account? Sign In'}
-            </Button>
-          </Grid>
-        </Grid>
-      </Paper>
-    </Container>
-  );
+   return (
+      <div style={containerStyle}>
+         <Typography component="h1" variant="h2" sx={{ mb: 3, color: 'white' }}>
+            Mess Manager
+         </Typography>
+         <div>
+            <Link to="/login" style={{ textDecoration: 'none' }}>
+               <Button variant="contained" color="primary" size="large" sx={{ mr: 2 }}>
+                  Sign In
+               </Button>
+            </Link>
+            <Link to="/register" style={{ textDecoration: 'none' }}>
+               <Button variant="outlined" color="primary" size="large">
+                  Sign Up
+               </Button>
+            </Link>
+         </div>
+      </div>
+   );
 };
 
-export default AuthPage;
+export default HomeScreen;
