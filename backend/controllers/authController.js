@@ -1,22 +1,13 @@
 import asyncHandler from "../middleware/asyncHandler.js";
-// import User from "../models/userModel.js";
-import generateToken from "../utils/generateToken.js";
-import { roleModelMap } from '../constants.js';
-import RoleIndex from '../models/RoleIndex.js';
+// import generateToken from "../utils/generateToken.js";
+import {
+	generateToken,
+	generateCollegeAdminToken,
+} from "../utils/generateToken.js";
+import { roleModelMap } from "../constants.js";
 import bcrypt from "bcryptjs";
-
-const matchPassword = async function (user, enteredPassword) {
-	const password1 = bcrypt.hashSync(enteredPassword, 10);
-
-	console.log(user.password);
-	console.log(password1);
-	console.log(enteredPassword);
-   
-	// if(user.password === password1)
-		return true;
-	// else
-	// 	return false;
-}
+import User from "../models/users/userModel.js";
+import CollegeAdmin from "../models/users/collegeAdminModel.js";
 
 //always use role in all camelCasing.
 
@@ -25,63 +16,25 @@ const matchPassword = async function (user, enteredPassword) {
 // @access  Public
 const authTest = (req, res) => {
 	res.status(200).json({ message: "Hello" });
-}
+};
 
-//create a different one for chief warden and superAdmin.
-// role
-// const commonAuthController = asyncHandler(async (req, res) => {
-// 	const { email, password } = req.body;
-
-// 	const user = await User.findOne({ email });
-
-// 	const messId = user.messId;
-// 	const role = "student";
-
-// 	if (user && (await user.matchPassword(password))) {
-// 		generateToken(res, user._id, role, messId);
-
-// 		res.status(200).json({
-// 			_id: user._id,
-// 			name: user.name,
-// 			email: user.email,
-// 			isAdmin: user.isAdmin,
-// 		});
-// 	} else {
-// 		res.status(401);
-// 		throw new Error("Invalid email or password");
-// 	}
-// });
-const commonAuthController = asyncHandler(async (req, res) => {
-	// res.status(200).json({ message: "Common Auth" });
-
+//except collegeAdmin, superAdmin
+const commonAuth = asyncHandler(async (req, res) => {
 	const { email, password } = req.body;
+	const user = await User.findOne({ email });
+	// console.log(user);
 
-	const roleIndex = await RoleIndex.findOne({ email });
-	// console.log(email);
-
-	if (!roleIndex) {s
-		return res.status(404).json({ error: 'Email not found' });
-	}
-
-	const role = roleIndex.role;
-	// const role = "student";
-
-	const RoleModel = roleModelMap[role];
-	const user = await RoleModel.findOne({ email });
-	console.log(user);
-
-	const messId = user.messId;
-
-	// const role = user.role;
-	if (user && (await matchPassword(user, password))) {
-		generateToken(res, user._id, role, messId); //this func also attaches token to response stream.
+	if (user && (await user.matchPassword(password))) {
+		generateToken(res, user._id, user.role, user.messId); //this func also attaches token to response stream.
 
 		res.status(200).json({
 			_id: user._id,
-			name: user.name,
+			fname: user.fname,
+			lname: user.lname,
 			email: user.email,
-			role: user.role, // Include the role in the response
+			role: user.role,
 			messId: user.messId,
+			collegeId: user.collegeId,
 		});
 	} else {
 		res.status(401);
@@ -89,7 +42,26 @@ const commonAuthController = asyncHandler(async (req, res) => {
 	}
 });
 
-export {
-	commonAuthController,
-	authTest
-};
+const collegeAdminAuth = asyncHandler(async (req, res) => {
+	const { email, password } = req.body;
+	const collegeAdmin = await CollegeAdmin.findOne({ email });
+
+	if (collegeAdmin && (await collegeAdmin.matchPassword(password))) {
+		generateCollegeAdminToken(res, collegeAdmin._id, collegeAdmin.collegeId); //this func also attaches token to response stream.
+
+		res.status(200).json({
+			id: collegeAdmin._id,
+			role: "collegeAdmin",
+			collegeName: collegeAdmin.collegeName,
+			image: collegeAdmin.image,
+			fname: collegeAdmin.fname,
+			lname: collegeAdmin.lname,
+			designation: collegeAdmin.designation,
+		});
+	} else {
+		res.status(401);
+		throw new Error("Invalid email or password");
+	}
+});
+
+export { commonAuth, authTest, collegeAdminAuth };

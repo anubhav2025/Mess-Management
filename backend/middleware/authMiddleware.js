@@ -2,9 +2,14 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "./asyncHandler.js";
 
 // Import the necessary models for different roles
-import { roleModelMap } from '../constants.js';
+import { roleModelMap } from "../constants.js";
+import User from "../models/users/userModel.js";
+import CollegeAdmin from "../models/users/collegeAdminModel.js";
 
-const allowedRoles = (requiredRoles) =>
+//except collegeAdmin, superAdmin.
+const allowedRoles = (
+	requiredRoles //requiredRoles is an array of strings, Eg: ['warden', 'storekeeper']
+) =>
 	asyncHandler(async (req, res, next) => {
 		let token;
 
@@ -18,22 +23,40 @@ const allowedRoles = (requiredRoles) =>
 		try {
 			const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-			// const roleModelMap = {
-			// 	"warden": Warden,
-			// 	"storeKeeper": Storekeeper,
-			// 	"accountant": Accountant,
-			// 	"student": Student,
-			// 	"superAdmin": SuperAdmin,
-			// 	"studentMessManager": StudentMessManager,
-			// };
-
-			const RoleModel = roleModelMap[decoded.role];
-
-			if (!RoleModel) {
-				return res.status(401).json({ message: "Invalid role specified" });
+			req.user = await User.findById(decoded.userId).select("-password");
+			if (
+				!req.user ||
+				!requiredRoles.includes(decoded.role) ||
+				decoded.messId !== req.user.messId
+			) {
+				return res.status(401).json({ message: "Not Authorized." }); //maybe not needed.
 			}
 
-			req.user = await RoleModel.findById(decoded.userId).select("-password");
+			next();
+		} catch (error) {
+			console.error(error);
+			res.status(401).json({ message: "Not authorized, token failed" });
+		}
+	});
+
+//might be unnecessary
+const collegeAdminOnly = (requiredRoles) =>
+	asyncHandler(async (req, res, next) => {
+		let token;
+
+		// Read JWT from the 'jwt' cookie
+		token = req.cookies.jwt;
+
+		if (!token) {
+			return res.status(401).json({ message: "Not authorized, no token" });
+		}
+
+		try {
+			const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+			req.user = await CollegeAdmin.findById(decoded.userId).select(
+				"-password"
+			);
 			if (
 				!req.user ||
 				!requiredRoles.includes(decoded.role) ||
@@ -59,4 +82,4 @@ const allowedRoles = (requiredRoles) =>
 // 	};
 // };
 
-export { allowedRoles };
+export { allowedRoles, collegeAdminOnly };
