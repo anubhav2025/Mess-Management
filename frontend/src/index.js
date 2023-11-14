@@ -10,10 +10,13 @@ import {
 	Route,
 	RouterProvider,
 } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
 
-import HomeScreen from "./screens/HomeScreen.jsx";
-import LoginScreen from "./screens/LoginScreen.jsx"
-import RegisterScreen from './screens/RegisterScreen.jsx';
+import HomeScreen from "./screens/HomeScreen";
+import LoginScreen from "./screens/LoginScreen"
+import LoginScr2 from "./screens/LoginScr2"
+import RegisterScreen from './screens/RegisterScreen';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -27,9 +30,11 @@ const router = createBrowserRouter(
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+	<React.StrictMode>
+		<Provider store={store}>
+			<RouterProvider router={router} />
+		</Provider>
+	</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

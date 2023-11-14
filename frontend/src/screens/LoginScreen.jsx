@@ -10,11 +10,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { useState, useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import { toast } from 'react-toastify';
+import { useLoginMutation } from '../slices/userApiSlice';
+import { setCredentials } from '../slices/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Copyright(props) {
    return (
@@ -35,30 +38,30 @@ export default function LoginScreen() {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
 
-   // const dispatch = useDispatch();
+   const dispatch = useDispatch();
    const navigate = useNavigate();
 
-   // const [login, { isLoading }] = useLoginMutation();
+   const [login, { isLoading }] = useLoginMutation();
 
-   // const { userInfo } = useSelector((state) => state.auth);
+   const { userInfo } = useSelector((state) => state.auth);
 
    const { search } = useLocation();
    const sp = new URLSearchParams(search);
    const redirect = sp.get('redirect') || '/';
 
-   // useEffect(() => {
-   //    if (userInfo) {
-   //       navigate(redirect);
-   //    }
-   // }, [navigate, redirect, userInfo]);
+   useEffect(() => {
+      if (userInfo) {
+         navigate(redirect);
+      }
+   }, [navigate, redirect, userInfo]);
 
    const submitHandler = async (e) => {
       e.preventDefault();
       console.log(email);
       console.log(password);
       try {
-         // const res = await login({ email, password }).unwrap();
-         // dispatch(setCredentials({ ...res }));
+         const res = await login({ email, password }).unwrap();
+         dispatch(setCredentials({ ...res }));
          navigate(redirect);
       }
       catch (err) {
@@ -122,7 +125,7 @@ export default function LoginScreen() {
                         type="password"
                         id="password"
                         autoComplete="current-password"
-                        value={password} 
+                        value={password}
                         onChange={(e) => setPassword(e.target.value)}
                      />
                      <Button
@@ -133,6 +136,9 @@ export default function LoginScreen() {
                      >
                         Sign In
                      </Button>
+
+                     {isLoading && <Loader />}
+
                      <Grid container>
                         <Grid item xs>
                            <Link to={"/login"} style={{ color: '#1976d2', textDecoration: 'none' }}>
