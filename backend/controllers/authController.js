@@ -1,25 +1,23 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 // import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
-import {
-	Warden,
-	Storekeeper,
-	Accountant,
-	Student,
-	SuperAdmin,
-	StudentMessManager,
-} from "../models/index.js";
+import { roleModelMap } from '../constants.js';
+import RoleIndex from '../models/RoleIndex.js'
 
 //always use role in all camelCasing.
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
 // @access  Public
-const commonAuthController = (
-	//create a different one for chief warden and superAdmin.
-	// role
-) =>
-	asyncHandler(async (req, res) => {
+const authTest = (req, res) => {
+ 	res.status(200).json({ message : "Hello" });
+}
+
+//create a different one for chief warden and superAdmin.
+// role
+const commonAuthController = asyncHandler(async (req, res) => {
+		res.status(200).json({ message : "Common Auth" });
+
 		const { email, password } = req.body;
 
 		const roleIndex = await RoleIndex.findOne({ email });
@@ -30,14 +28,6 @@ const commonAuthController = (
 
 		const role = roleIndex.role;
 
-		const roleModelMap = {
-			"warden": Warden,
-			"storeKeeper": Storekeeper,
-			"accountant": Accountant,
-			"student": Student,
-			"superAdmin": SuperAdmin,
-			"studentMessManager": StudentMessManager,
-		};
 		const RoleModel = roleModelMap[role];
 		const user = await RoleModel.findOne({ email });
 
@@ -58,3 +48,8 @@ const commonAuthController = (
 			throw new Error("Invalid email or password");
 		}
 	});
+
+	export {
+		commonAuthController,
+		authTest
+	};

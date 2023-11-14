@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import router from "./routes/router.js";
 import connectDB from "./config/db.js";
+import authRoutes from "./routes/authRoutes.js"
 
 dotenv.config();
 const port = process.env.PORT || 5000;
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/api", router);
+app.use("/api/users", authRoutes);
 
 // app.get("/", (req, res) => {
 // 	res.send("Api is running....");
