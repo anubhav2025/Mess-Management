@@ -9,7 +9,6 @@ const App = () => {
   return (
     <>
       <ToastContainer />
-      Mess Management
       {/* <Header /> */}
       <main className='py-3'>
         <Container>

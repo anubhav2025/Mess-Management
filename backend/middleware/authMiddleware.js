@@ -2,14 +2,7 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "./asyncHandler.js";
 
 // Import the necessary models for different roles
-import {
-	Warden,
-	Storekeeper,
-	Accountant,
-	Student,
-	SuperAdmin,
-	StudentMessManager,
-} from "../models/index.js";
+import { roleModelMap } from '../constants.js';
 
 const allowedRoles = (requiredRoles) =>
 	asyncHandler(async (req, res, next) => {
@@ -25,14 +18,14 @@ const allowedRoles = (requiredRoles) =>
 		try {
 			const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-			const roleModelMap = {
-				"warden": Warden,
-				"storeKeeper": Storekeeper,
-				"accountant": Accountant,
-				"student": Student,
-				"superAdmin": SuperAdmin,
-				"studentMessManager": StudentMessManager,
-			};
+			// const roleModelMap = {
+			// 	"warden": Warden,
+			// 	"storeKeeper": Storekeeper,
+			// 	"accountant": Accountant,
+			// 	"student": Student,
+			// 	"superAdmin": SuperAdmin,
+			// 	"studentMessManager": StudentMessManager,
+			// };
 
 			const RoleModel = roleModelMap[decoded.role];
 
