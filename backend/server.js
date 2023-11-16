@@ -3,16 +3,18 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import router from "./routes/router.js";
 import connectDB from "./config/db.js";
-import authRoutes from "./routes/authRoutes.js"
+import authRoutes from "./routes/authRoutes.js";
 
-import helmet from 'helmet';
-import cors from 'cors';
+import helmet from "helmet";
+import cors from "cors";
 
 dotenv.config();
 const port = process.env.PORT || 5000;
 connectDB();
 
 const app = express();
+
+app.use(cors());
 
 // Body parser middleware
 app.use(express.json());
@@ -35,8 +37,7 @@ app.use("/api/users", authRoutes);
 // app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
 
 // app.get("/", (req, res) => {
-   // 	res.send("Api is running....");
-   // });
-   
-   app.listen(port, () => console.log(`Server is running on port ${port}`));
-   
+// 	res.send("Api is running....");
+// });
+
+app.listen(port, () => console.log(`Server is running on port ${port}`));
