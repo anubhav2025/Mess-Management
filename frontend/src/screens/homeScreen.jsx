@@ -1,10 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Typography } from '@mui/material';
+import { toast } from "react-toastify";
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import { removeCredentials } from '../slices/authSlice';
+import { useLogoutMutation } from '../slices/userApiSlice';
 
 const HomeScreen = () => {
    const { userInfo } = useSelector((state) => state.auth);
+
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
+
+   const [logoutApiCall] = useLogoutMutation();
+
+   const logoutHandler = async () => {
+      try {
+         await logoutApiCall().unwrap();
+         dispatch(removeCredentials());
+         navigate("/");
+         toast.info("Logged out successfully");
+      }
+      catch (err) {
+         console.log(err);
+         toast.error(err?.data?.message || err.error);
+      }
+   };
 
    const containerStyle = {
       backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
@@ -20,7 +42,7 @@ const HomeScreen = () => {
    return (
       <div style={containerStyle}>
          <Typography component="h1" variant="h2" sx={{ mb: 3, color: 'white' }}>
-            Mess Manager
+            Mess Master
          </Typography>
 
          {userInfo ? (
@@ -28,6 +50,19 @@ const HomeScreen = () => {
                <Typography component="h1" variant="h2" sx={{ mb: 3, color: 'yellow' }}>
                   Welcome!
                </Typography>
+               <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{
+                     mt: 3,
+                     mb: 2,
+                     width: '12%'
+                  }}
+                  onClick={logoutHandler}
+               >
+                  Logout
+               </Button>
             </>
          ) : (
             <div>

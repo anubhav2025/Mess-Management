@@ -14,7 +14,7 @@ const matchPassword = async function (user, enteredPassword) {
 
 //always use role in all camelCasing.
 
-// @desc    Auth user & get token
+// @desc    Auth Test & get token
 // @route   POST /api/users/login
 // @access  Public
 const authTest = (req, res) => {
@@ -44,15 +44,14 @@ const commonAuthController = asyncHandler(async (req, res) => {
 
   const messId = user.messId;
 
-  // const role = user.role;
   if (user && (await matchPassword(user, password))) {
-    generateToken(res, user._id, role, messId); //this func also attaches token to response stream.
+    generateToken(res, user._id, role, messId);           //this func also attaches token to response stream.
 
     res.status(200).json({
       _id: user._id,
       name: user.name,
       email: user.email,
-      role: user.role, // Include the role in the response
+      role: user.role,
       messId: user.messId,
     });
   } else {
@@ -61,4 +60,15 @@ const commonAuthController = asyncHandler(async (req, res) => {
   }
 });
 
-export { commonAuthController, authTest };
+// @desc    Logout user / clear cookie
+// @route   POST /api/users/logout
+// @access  Public
+const logoutUser = (req, res) => {
+  res.cookie("jwt", "", {
+    httpOnly: true,
+    expires: new Date(0),
+  });
+  res.status(200).json({ message: "Logged out Successfully" });
+};
+
+export { authTest, commonAuthController, logoutUser };

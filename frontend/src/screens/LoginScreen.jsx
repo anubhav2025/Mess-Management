@@ -62,8 +62,6 @@ export default function LoginScreen() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(email);
-    console.log(password);
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));

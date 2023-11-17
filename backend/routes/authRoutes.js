@@ -3,7 +3,7 @@ import {
    authTest,
    commonAuthController,
    // registerUser,
-   // logoutUser,
+   logoutUser,
    // getUserProfile,
    // updateUserProfile,
    // getUsers,
@@ -18,5 +18,6 @@ const router = express.Router();
 // router.route('/').post(registerUser).get(protect, admin, getUsers);
 router.post('/test', authTest);
 router.post('/login', commonAuthController);
+router.post('/logout', logoutUser);
 
 export default router;
