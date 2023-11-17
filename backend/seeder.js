@@ -10,6 +10,7 @@ import Storekeeper from "./models/storeKeeperModel.js";
 import Superadmin from "./models/superAdminModel.js";
 import Warden from "./models/wardenModel.js";
 import Mess from "./models/messModel.js";
+import Roleindex from "./models/RoleIndex.js";
 //importing data corresponding to each model
 import students from "./data/studentData.js";
 import accountants from "./data/accountantData.js";
@@ -19,6 +20,7 @@ import storekeepers from "./data/storeKeeperData.js";
 import superadmins from "./data/superAdminData.js";
 import wardens from "./data/wardenData.js";
 import messes from "./data/messData.js";
+import roleindexes from "./data/roleIndexData.js";
 import connectDB from "./config/db.js";
 
 dotenv.config();
@@ -42,7 +44,8 @@ const importData = async () => {
     // await Storekeeper.insertMany(storekeepers);
     // await Superadmin.insertMany(superadmins);
     // await Warden.insertMany(wardens);
-    await Mess.insertMany(messes);
+    // await Mess.insertMany(messes);
+    await Roleindex.insertMany(roleindexes);
 
     console.log("Data Imported!".green.inverse);
     process.exit();
