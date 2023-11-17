@@ -6,14 +6,6 @@ import RoleIndex from "../models/RoleIndex.js";
 import bcrypt from "bcryptjs";
 
 const matchPassword = async function (user, enteredPassword) {
-  //   const password1 = bcrypt.hashSync(enteredPassword, 10);
-
-  console.log(user.password);
-  //   console.log(password1);
-  console.log(enteredPassword);
-
-  //   if (user.password === password1) return true;
-  //   else return false;
 
   const passwordMatch = bcrypt.compareSync(enteredPassword, user.password);
 
@@ -30,44 +22,16 @@ const authTest = (req, res) => {
 };
 
 //create a different one for chief warden and superAdmin.
-// role
-// const commonAuthController = asyncHandler(async (req, res) => {
-// 	const { email, password } = req.body;
 
-// 	const user = await User.findOne({ email });
-
-// 	const messId = user.messId;
-// 	const role = "student";
-
-// 	if (user && (await user.matchPassword(password))) {
-// 		generateToken(res, user._id, role, messId);
-
-// 		res.status(200).json({
-// 			_id: user._id,
-// 			name: user.name,
-// 			email: user.email,
-// 			isAdmin: user.isAdmin,
-// 		});
-// 	} else {
-// 		res.status(401);
-// 		throw new Error("Invalid email or password");
-// 	}
-// });
 const commonAuthController = asyncHandler(async (req, res) => {
-  // res.status(200).json({ message: "Common Auth" });
-
   const { email, password } = req.body;
 
   const roleIndex = await RoleIndex.findOne({ email });
-  // console.log(email);
-
   if (!roleIndex) {
-    s;
     return res.status(404).json({ error: "Email not found" });
   }
 
   const role = roleIndex.role;
-  // const role = "student";
 
   const RoleModel = roleModelMap[role];
   const user = await RoleModel.findOne({ email });
@@ -76,7 +40,7 @@ const commonAuthController = asyncHandler(async (req, res) => {
     return res.status(404).json({ error: "User not found" });
   }
 
-  console.log(user);
+  // console.log(user);
 
   const messId = user.messId;
 
