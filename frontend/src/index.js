@@ -15,7 +15,6 @@ import store from "./store";
 
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen"
-import LoginScr2 from "./screens/LoginScr2"
 import RegisterScreen from './screens/RegisterScreen';
 
 const router = createBrowserRouter(
