@@ -36,7 +36,7 @@ const HomeScreen = () => {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '20px',
+      // padding: '20px',
    };
 
    return (
