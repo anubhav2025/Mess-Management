@@ -68,10 +68,6 @@ const logoutUser = (req, res) => {
   res.status(200).json({ message: "Logged out Successfully" });
 };
 
-// export { authTest, commonAuthController, logoutUser };
-// 	res.status(200).json({ message: "Hello" });
-// };
-
 //except collegeAdmin, superAdmin
 const commonAuth = asyncHandler(async (req, res) => {
   const { email, password } = req.body;

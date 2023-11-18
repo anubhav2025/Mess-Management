@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
-import Warden from "./models/wardenModel.js";
-import Storekeeper from "./models/storeKeeperModel.js";
-import Accountant from "./models/accountantModel.js";
-import Student from "./models/studentModel.js";
-import SuperAdmin from "./models/superAdminModel.js";
-import StudentMessManager from "./models/studentMessManagerModel.js";
-import { roleModelMap } from "../../constants.js";
+// import Warden from "./wardenModel.js"
+// import Storekeeper from "./storeKeeperModel.js";
+// import Accountant from "./accountantModel.js";
+// import Student from "./studentModel.js";
+// import SuperAdmin from "./superAdminModel.js";
+// import StudentMessManager from "./studentMessManagerModel.js";
+// import { roleModelMap } from "../../constants.js";
+import bcrypt from "bcryptjs";
+
 const userSchema = new mongoose.Schema(
 	{
 		role: {

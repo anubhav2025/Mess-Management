@@ -1,9 +1,9 @@
 import Warden from "./models/users/wardenModel.js";
-import Storekeeper from "./models/storeKeeperModel.js";
-import Accountant from "./models/accountantModel.js";
-import Student from "./models/studentModel.js";
-import SuperAdmin from "./models/superAdminModel.js";
-import StudentMessManager from "./models/studentMessManagerModel.js";
+import Storekeeper from "./models/users/storekeeperModel.js";
+import Accountant from "./models/users/accountantModel.js";
+import Student from "./models/users/studentModel.js";
+import SuperAdmin from "./models/users/superAdminModel.js";
+import StudentMessManager from "./models/users/studentMessManagerModel.js";
 
 export const roleModelMap = {
 	warden: Warden,
