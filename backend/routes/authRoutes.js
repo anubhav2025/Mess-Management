@@ -1,16 +1,17 @@
+//prefix route '/api/users'
 import express from "express";
 import {
-  authTest,
-  commonAuth,
-  collegeAdminAuth,
-  // registerUser,
-  logoutUser,
-  // getUserProfile,
-  // updateUserProfile,
-  // getUsers,
-  // deleteUser,
-  // getUserById,
-  // updateUser,
+	authTest,
+	nonAdminAuth,
+	collegeAdminAuth,
+	// registerUser,
+	logoutUser,
+	// getUserProfile,
+	// updateUserProfile,
+	// getUsers,
+	// deleteUser,
+	// getUserById,
+	// updateUser,
 } from "../controllers/authController.js";
 // import { protect } from '../middleware/authMiddleware.js';
 // 	authTest,
@@ -22,7 +23,7 @@ const router = express.Router();
 
 // router.route('/').post(registerUser).get(protect, admin, getUsers);
 router.post("/test", authTest);
-router.post("/login", commonAuth);
+router.post("/login", nonAdminAuth);
 router.post("/logout", logoutUser);
 
 export default router;

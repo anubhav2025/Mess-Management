@@ -1,7 +1,6 @@
 //prefix route '/api'
 
 import express from "express";
-// import { Router } from "express";
 import messRouter from "./messRouter.js";
 const router = express.Router();
 

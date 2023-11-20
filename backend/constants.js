@@ -5,11 +5,38 @@ import Student from "./models/users/studentModel.js";
 import SuperAdmin from "./models/users/superAdminModel.js";
 import StudentMessManager from "./models/users/studentMessManagerModel.js";
 
-export const roleModelMap = {
-	warden: Warden,
-	storeKeeper: Storekeeper,
-	accountant: Accountant,
-	student: Student,
-	superAdmin: SuperAdmin,
-	studentMessManager: StudentMessManager,
+const roleModelMap = {
+	Warden: Warden,
+	StoreKeeper: Storekeeper,
+	Accountant: Accountant,
+	Student: Student,
+	SuperAdmin: SuperAdmin,
+	StudentMessManager: StudentMessManager,
 };
+
+const nonAdminRoles = [
+	"accountant",
+	"student",
+	"storekeeper",
+	"warden",
+	"studentMessManager",
+];
+const firstCapNonAdminRoles = [
+	"Accountant",
+	"Student",
+	"Storekeeper",
+	"Warden",
+	"StudentMessManager",
+];
+
+const roleHierarchy = {
+	SuperAdmin: 1,
+	CollegeAdmin: 2,
+	Warden: 3,
+	Storekeeper: 4,
+	Accountant: 4,
+	StudentMessManager: 5,
+	Student: 6,
+};
+
+export { roleModelMap, nonAdminRoles, firstCapNonAdminRoles, roleHierarchy };

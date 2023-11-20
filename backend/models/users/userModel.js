@@ -5,13 +5,14 @@ import mongoose from "mongoose";
 // import Student from "./studentModel.js";
 // import SuperAdmin from "./superAdminModel.js";
 // import StudentMessManager from "./studentMessManagerModel.js";
-// import { roleModelMap } from "../../constants.js";
+import { firstCapNonAdminRoles } from "../../constants.js";
 import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema(
 	{
 		role: {
 			type: String,
+			enum: firstCapNonAdminRoles,
 			required: true,
 		},
 		fname: {
