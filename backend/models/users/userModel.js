@@ -1,16 +1,18 @@
 import mongoose from "mongoose";
+// import Warden from "./wardenModel.js"
+// import Storekeeper from "./storeKeeperModel.js";
+// import Accountant from "./accountantModel.js";
+// import Student from "./studentModel.js";
+// import SuperAdmin from "./superAdminModel.js";
+// import StudentMessManager from "./studentMessManagerModel.js";
+import { firstCapNonAdminRoles } from "../../constants.js";
 import bcrypt from "bcryptjs";
-// import Warden from "./models/users/wardenModel.js";
-// import Storekeeper from "./models/users/storeKeeperModel.js";
-// import Accountant from "./models/users/accountantModel.js";
-// import Student from "./models/users/studentModel.js";
-// import SuperAdmin from "./models/users/superAdminModel.js";
-// import StudentMessManager from "./models/users/studentMessManagerModel.js";
-// import { roleModelMap } from "../../constants.js";
+
 const userSchema = new mongoose.Schema(
   {
     role: {
       type: String,
+      enum: firstCapNonAdminRoles,
       required: true,
     },
     fname: {

@@ -68,15 +68,11 @@ const logoutUser = (req, res) => {
   res.status(200).json({ message: "Logged out Successfully" });
 };
 
-// export { authTest, commonAuthController, logoutUser };
-// 	res.status(200).json({ message: "Hello" });
-// };
-
 //except collegeAdmin, superAdmin
-const commonAuth = asyncHandler(async (req, res) => {
+const nonAdminAuth = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  console.log(user);
+  // console.log(user);
 
   if (user && (await user.matchPassword(password))) {
     generateToken(res, user._id, user.role, user.messId); //this func also attaches token to response stream.
@@ -118,4 +114,4 @@ const collegeAdminAuth = asyncHandler(async (req, res) => {
   }
 });
 
-export { commonAuth, authTest, collegeAdminAuth, logoutUser };
+export { nonAdminAuth, authTest, collegeAdminAuth, logoutUser };

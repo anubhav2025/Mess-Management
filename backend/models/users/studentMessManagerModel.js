@@ -23,15 +23,15 @@ const studentMessManagerSchema = new mongoose.Schema(
 		pendingRequestsFromDown: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
-				required: true,
+				// required: true,
 				ref: "Request",
 			},
 		],
 		// will both the request come from the same request model
-		requestsForApproval: [
+		requestsSentForApproval: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
-				required: true,
+				// required: true,
 				ref: "Request",
 			},
 		],

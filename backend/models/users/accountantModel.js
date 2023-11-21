@@ -19,7 +19,7 @@ const accountantSchema = new mongoose.Schema(
 			},
 		],
 		// will both the request come from same request model
-		requestsForApproval: [
+		requestsSentForApproval: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
 				ref: "Request",
