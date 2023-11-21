@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
 
-const generateToken = (res, userId, role, mess_id) => {
+const generateToken = (res, userId, role, mess_id, college_id) => {
 	const token = jwt.sign(
-		{ userId: userId, role: role, messId: mess_id },
+		{ userId: userId, role: role, messId: mess_id, collegeAdminId: college_id },
 		process.env.JWT_SECRET,
 		{
 			expiresIn: "30d",
@@ -20,7 +20,7 @@ const generateToken = (res, userId, role, mess_id) => {
 
 const generateCollegeAdminToken = (res, userId, college_id) => {
 	const token = jwt.sign(
-		{ userId: userId, role: "collegeAdmin", collegeId: college_id },
+		{ userId: userId, role: "collegeAdmin", collegeAdminId: college_id },
 		process.env.JWT_SECRET,
 		{
 			expiresIn: "30d",
