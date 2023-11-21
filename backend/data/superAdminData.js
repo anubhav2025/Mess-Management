@@ -8,7 +8,7 @@ const superadmins = [
     image: "/images/user.png",
     email: "superadmin@gmail.com",
     password: bcrypt.hashSync("superadmin@007", 10),
-    isAdmin: true,
+    // isAdmin: true,
   },
 ];
 

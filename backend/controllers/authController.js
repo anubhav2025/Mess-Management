@@ -76,7 +76,7 @@ const logoutUser = (req, res) => {
 const commonAuth = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  // console.log(user);
+  console.log(user);
 
   if (user && (await user.matchPassword(password))) {
     generateToken(res, user._id, user.role, user.messId); //this func also attaches token to response stream.
