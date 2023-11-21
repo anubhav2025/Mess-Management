@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Mess from "../messModel.js";
 import College from "./collegeAdminModel.js";
+import Request from "../requestModel.js";
 
 const wardenSchema = new mongoose.Schema(
 	{
@@ -9,10 +10,16 @@ const wardenSchema = new mongoose.Schema(
 			required: true,
 			ref: "User",
 		},
-		pendingRequests: [
+		pendingRequestsFromDown: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
 				// required: true,
+				ref: "Request",
+			},
+		],
+		requestsSentForApproval: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
 				ref: "Request",
 			},
 		],

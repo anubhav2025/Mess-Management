@@ -1,19 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Typography } from '@mui/material';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Button, Typography } from "@mui/material";
 import { toast } from "react-toastify";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeCredentials } from '../slices/authSlice';
-import { useLogoutMutation } from '../slices/userApiSlice';
+import { removeCredentials } from "../slices/authSlice";
+import { useLogoutMutation } from "../slices/userApiSlice";
 
 const HomeScreen = () => {
-   const { userInfo } = useSelector((state) => state.auth);
+  const { userInfo } = useSelector((state) => state.auth);
 
-   const dispatch = useDispatch();
-   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-   const [logoutApiCall] = useLogoutMutation();
+  const [logoutApiCall] = useLogoutMutation();
 
    const logoutHandler = async () => {
       try {
@@ -28,22 +28,22 @@ const HomeScreen = () => {
       }
    };
 
-   const containerStyle = {
-      backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
-      backgroundSize: 'cover',
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      // padding: '20px',
-   };
+  const containerStyle = {
+    backgroundImage: "url(https://source.unsplash.com/random?wallpapers)",
+    backgroundSize: "cover",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    // padding: '20px',
+  };
 
-   return (
-      <div style={containerStyle}>
-         <Typography component="h1" variant="h2" sx={{ mb: 3, color: 'white' }}>
-            Mess Master
-         </Typography>
+  return (
+    <div style={containerStyle}>
+      <Typography component="h1" variant="h2" sx={{ mb: 3, color: "white" }}>
+        Mess Master
+      </Typography>
 
          {userInfo ? (
             <>

@@ -6,9 +6,9 @@ import { roleModelMap } from "../constants.js";
 import User from "../models/users/userModel.js";
 import CollegeAdmin from "../models/users/collegeAdminModel.js";
 
-//except collegeAdmin, superAdmin.
+//except CollegeAdmin, SuperAdmin.
 const allowedRoles = (
-	requiredRoles //requiredRoles is an array of strings, Eg: ['warden', 'storekeeper']
+	requiredRoles //requiredRoles is an array of strings, Eg: ['Warden', 'Storekeeper']
 ) =>
 	asyncHandler(async (req, res, next) => {
 		let token;

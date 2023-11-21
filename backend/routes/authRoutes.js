@@ -1,7 +1,8 @@
+//prefix route '/api/users'
 import express from "express";
 import {
   authTest,
-  commonAuth,
+  nonAdminAuth,
   collegeAdminAuth,
   // registerUser,
   logoutUser,
@@ -22,7 +23,7 @@ const router = express.Router();
 
 // router.route('/').post(registerUser).get(protect, admin, getUsers);
 router.post("/test", authTest);
-router.post("/login", commonAuth);
+router.post("/login", nonAdminAuth);
 router.post("/logout", logoutUser);
 
 export default router;

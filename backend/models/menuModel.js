@@ -11,7 +11,7 @@ const menuSchema = new mongoose.Schema(
       {
         menuItem: {
           type: mongoose.Schema.Types.ObjectId,
-          required: true,
+          // required: true,
           ref: "MenuItem",
         },
       },
@@ -20,7 +20,7 @@ const menuSchema = new mongoose.Schema(
       {
         menuItem: {
           type: mongoose.Schema.Types.ObjectId,
-          required: true,
+          // required: true,
           ref: "MenuItem",
         },
       },
@@ -29,7 +29,7 @@ const menuSchema = new mongoose.Schema(
       {
         menuItem: {
           type: mongoose.Schema.Types.ObjectId,
-          required: true,
+          // required: true,
           ref: "MenuItem",
         },
       },
@@ -38,7 +38,7 @@ const menuSchema = new mongoose.Schema(
       {
         menuItem: {
           type: mongoose.Schema.Types.ObjectId,
-          required: true,
+          // required: true,
           ref: "MenuItem",
         },
       },
@@ -47,7 +47,7 @@ const menuSchema = new mongoose.Schema(
       {
         menuItem: {
           type: mongoose.Schema.Types.ObjectId,
-          required: true,
+          // required: true,
           ref: "MenuItem",
         },
       },
@@ -56,7 +56,7 @@ const menuSchema = new mongoose.Schema(
       {
         menuItem: {
           type: mongoose.Schema.Types.ObjectId,
-          required: true,
+          // required: true,
           ref: "MenuItem",
         },
       },
@@ -65,7 +65,7 @@ const menuSchema = new mongoose.Schema(
       {
         menuItem: {
           type: mongoose.Schema.Types.ObjectId,
-          required: true,
+          // required: true,
           ref: "MenuItem",
         },
       },

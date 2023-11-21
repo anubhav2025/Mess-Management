@@ -1,9 +1,9 @@
+import { text } from "express";
 import mongoose from "mongoose";
 
 const reviewSchema = mongoose.Schema(
   {
-    name: { type: String, required: true },
-    rating: { type: Number, required: true },
+    rating: { type: Number, required: true, min: 1, max: 5 },
     comment: { type: String, required: true },
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -23,9 +23,24 @@ const menuItemSchema = new mongoose.Schema(
       required: true,
       ref: "Menu",
     },
+    itemName: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+    },
     day: {
       type: String,
-      enum: ["sunday", "monday", "tuesday", "wednesday", "friday", "saturday"],
+      enum: [
+        "sunday",
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+      ],
     },
     time: {
       type: String,
@@ -34,12 +49,12 @@ const menuItemSchema = new mongoose.Schema(
     reviews: [reviewSchema],
     rating: {
       type: Number,
-      required: true,
+      // required: true,
       default: 0,
     },
     numReviews: {
       type: Number,
-      required: true,
+      // required: true,
       default: 0,
     },
     // added calories
@@ -52,6 +67,17 @@ const menuItemSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+// Calculate average rating and number of reviews when a new review is added
+menuItemSchema.pre("save", function (next) {
+  if (this.isModified("reviews") || this.isNew) {
+    this.numReviews = this.reviews.length;
+    this.rating =
+      this.reviews.reduce((acc, review) => acc + review.rating, 0) /
+      this.numReviews;
+  }
+  next();
+});
 
 const MenuItem = mongoose.model("MenuItem", menuItemSchema);
 export default MenuItem;

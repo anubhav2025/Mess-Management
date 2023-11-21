@@ -1,60 +1,71 @@
-const mongoose = require("mongoose");
-const Manager = require("./managerModel");
-const Storekeeper = require("./storekeeperModel");
-const Warden = require("./wardenModel");
-const Complaint = require("./complaintModel");
+import mongoose from "mongoose";
 
-const requestSchema = new mongoose.Schema({
-  madeBy: {
+const remarkSchema = new mongoose.Schema({
+  madeById: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    refPath: "madeByType",
+    ref: "User",
   },
-  madeByType: {
+  remark: {
     type: String,
     required: true,
-    enum: ["Manager", "Storekeeper", "Warden"],
+  },
+  timestamps: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+const requestSchema = new mongoose.Schema({
+  madeById: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
+  messId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "Mess",
+  },
+  collegeAdminId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "CollegeAdmin",
+  },
+  status: {
+    type: String,
+    required: true,
+    enum: ["active", "approved", "declined"],
   },
   complaintAssociated: Boolean,
   complaintId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Complaint", // Replace 'Complaint' with the actual model name for complaints
+    ref: "Complaint",
   },
-  approvedByWarden: Boolean,
-  approvedByStorekeeper: Boolean,
-  approvedByAccountant: Boolean,
   title: {
     type: String,
     required: true,
   },
   description: String,
-  wardenRemarks: String,
-  storekeeperRemarks: String,
-  managerRemarks: String,
-  lastApprovedByType: {
-    type: String,
-    required: true,
-    enum: ["Manager", "Storekeeper", "Warden"],
-  },
-  lastApprovedBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    refPath: "lastApprovedByType",
-  },
+  remarks: [remarkSchema],
+  approvedBy: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  declinedBy: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
   approvalNeededFrom: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      refPath: "approvalNeededFromType",
+      ref: "User",
     },
   ],
-  approvalNeededFromType: [
-    {
-      type: String,
-      required: true,
-      enum: ["Manager", "Storekeeper", "Warden"],
-    },
-  ],
-  accountantRemarks: String,
   associatedRequests: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -65,4 +76,4 @@ const requestSchema = new mongoose.Schema({
 
 const Request = mongoose.model("Request", requestSchema);
 
-module.exports = Request;
+export default Request;

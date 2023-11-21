@@ -66,6 +66,7 @@ export default function LoginScreen() {
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
+      toast.success("Successfully logged in");
       navigate(redirect);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
