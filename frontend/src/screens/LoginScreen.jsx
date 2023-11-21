@@ -56,6 +56,7 @@ export default function LoginScreen() {
 
   useEffect(() => {
     if (userInfo) {
+      // console.log(userInfo.role);
       navigate(redirect);
     }
   }, [navigate, redirect, userInfo]);

@@ -20,7 +20,7 @@ const HomeScreen = () => {
          await logoutApiCall().unwrap();
          dispatch(removeCredentials());
          navigate("/");
-         toast.info("Logged out successfully");
+         toast.info("Logged out successfully", { autoClose: 1000 });
       }
       catch (err) {
          console.log(err);
@@ -63,6 +63,18 @@ const HomeScreen = () => {
                >
                   Logout
                </Button>
+               <Link to="/dashboard/student" style={{ textDecoration: 'none', width: '12%' }}>
+                  <Button
+                     fullWidth
+                     variant="contained"
+                     sx={{
+                        mt: 3,
+                        mb: 2,
+                     }}
+                  >
+                     Dashboard
+                  </Button>
+               </Link>
             </>
          ) : (
             <div>

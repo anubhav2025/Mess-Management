@@ -16,6 +16,9 @@ import store from "./store";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen"
 import RegisterScreen from './screens/RegisterScreen';
+import DashboardScreen from './screens/DashboardScreen';
+import DashboardScreen2 from './screens/DashboardScreen2';
+import Dashboard from './components/Dashboard';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -23,7 +26,12 @@ const router = createBrowserRouter(
 			<Route index={true} path="/" element={<HomeScreen />} />
 			<Route path="/login" element={<LoginScreen />} />
 			<Route path="/register" element={<RegisterScreen />} />
+
+			<Route path="" element={<Dashboard />}>
+				<Route path="/dashboard/student" element={<DashboardScreen2 />} />
+			</Route>
 		</Route>
+
 	)
 );
 
