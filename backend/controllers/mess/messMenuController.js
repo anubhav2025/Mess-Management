@@ -1,77 +1,46 @@
 import asyncHandler from "../../middleware/asyncHandler.js";
 import Menu from "../../models/menuModel.js";
+import MenuItem from "../../models/menuItemModel.js";
 
-// @desc    Create new order
-// @route   POST /api/orders
-// @access  Private
+// @desc    Create new Menu
+// @route   POST /api/mess/menu/addMenu
+// @access  Public
 const createMenu = asyncHandler(async (req, res) => {
   try {
-    const {
-      messId,
-      monday,
-      tuesday,
-      wednesday,
-      thursday,
-      friday,
-      saturday,
-      sunday,
-    } = req.body;
+    // console.log(req.body);
+    const { messId } = req.body;
 
     const menu = await Menu.create({
-      messId,
-      monday,
-      tuesday,
-      wednesday,
-      thursday,
-      friday,
-      saturday,
-      sunday,
+      messId: messId,
+      monday: [],
+      tuesday: [],
+      wednesday: [],
+      thursday: [],
+      friday: [],
+      saturday: [],
+      sunday: [],
     });
+    // console.log("HELLO");
 
     return res.status(201).json(menu);
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-// @desc    Create new order
-// @route   POST /api/orders
-// @access  Private
+// @desc    Get Menu By Mess ID
+// @route   GET /api/mess/menu/:messId   here id is mess id
+// @access  Public
 const getMenuByMessId = asyncHandler(async (req, res) => {
   try {
-    const menuId = req.params.menuId;
-    const daysOfWeekOrder = [
-      "monday",
-      "tuesday",
-      "wednesday",
-      "thursday",
-      "friday",
-      "saturday",
-      "sunday",
-    ];
+    const messId = req.params.messId;
 
-    const menuItems = await MenuItem.find({ menuId }).sort({
-      day: {
-        $function: {
-          body: `function(day) { return ${JSON.stringify(
-            daysOfWeekOrder
-          )}.indexOf(day); }`,
-        },
-      },
-      time: 1,
-    });
+    // Execute the query to get the menu
+    const menu = await Menu.findOne({ messId: messId }).exec();
 
-    const organizedMenu = {};
-
-    daysOfWeekOrder.forEach((day) => {
-      organizedMenu[day] = [];
-    });
-
-    menuItems.forEach((menuItem) => {
-      organizedMenu[menuItem.day].push(menuItem);
-    });
-
-    return res.status(200).json(organizedMenu);
+    console.log(menu);
+    return res.status(200).json(menu);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal Server Error" });
@@ -79,3 +48,39 @@ const getMenuByMessId = asyncHandler(async (req, res) => {
 });
 
 export { getMenuByMessId, createMenu };
+
+// Might be used
+//getMenuById
+// if (req.user?.messId && req.user.messId !== messIdParams) {
+//   res.status(404).json({ success: false, error: "Unauthorized" });
+// }
+// const messMenu = Menu.find({ messId: messIdParams });
+// const menuId = messMenu._id;
+// const daysOfWeekOrder = [
+//   "monday",
+//   "tuesday",
+//   "wednesday",
+//   "thursday",
+//   "friday",
+//   "saturday",
+//   "sunday",
+// ];
+// const menuItems = await MenuItem.find({ menuId }).sort({
+//   day: {
+//     $function: {
+//       body: `function(day) { return ${JSON.stringify(
+//         daysOfWeekOrder
+//       )}.indexOf(day); }`,
+//     },
+//   },
+//   time: 1,
+// });
+// const organizedMenu = {};
+// daysOfWeekOrder.forEach((day) => {
+//   organizedMenu[day] = [];
+// });
+// menuItems.forEach((menuItem) => {
+//   organizedMenu[menuItem.day].push(menuItem);
+// });
+
+// const jsonMenu = JSON.stringify(menu);

@@ -1,3 +1,4 @@
+import { text } from "express";
 import mongoose from "mongoose";
 
 const reviewSchema = mongoose.Schema(
@@ -22,6 +23,13 @@ const menuItemSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Menu",
+    },
+    itemName: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
     },
     day: {
       type: String,
