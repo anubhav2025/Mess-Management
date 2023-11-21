@@ -39,17 +39,41 @@ const createMenu = asyncHandler(async (req, res) => {
 // @access  Private
 const getMenuByMessId = asyncHandler(async (req, res) => {
   try {
-    const messId = req.params.messId;
-    const menu = await Menu.findOne({ messId }).populate(
-      "monday.menuItem tuesday.menuItem wednesday.menuItem thursday.menuItem friday.menuItem saturday.menuItem sunday.menuItem"
-    );
+    const menuId = req.params.menuId;
+    const daysOfWeekOrder = [
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+      "sunday",
+    ];
 
-    if (!menu) {
-      return res.status(404).json({ error: "Menu not found" });
-    }
+    const menuItems = await MenuItem.find({ menuId }).sort({
+      day: {
+        $function: {
+          body: `function(day) { return ${JSON.stringify(
+            daysOfWeekOrder
+          )}.indexOf(day); }`,
+        },
+      },
+      time: 1,
+    });
 
-    return res.status(200).json(menu);
+    const organizedMenu = {};
+
+    daysOfWeekOrder.forEach((day) => {
+      organizedMenu[day] = [];
+    });
+
+    menuItems.forEach((menuItem) => {
+      organizedMenu[menuItem.day].push(menuItem);
+    });
+
+    return res.status(200).json(organizedMenu);
   } catch (error) {
+    console.error(error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 });

@@ -25,7 +25,15 @@ const menuItemSchema = new mongoose.Schema(
     },
     day: {
       type: String,
-      enum: ["sunday", "monday", "tuesday", "wednesday", "friday", "saturday"],
+      enum: [
+        "sunday",
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+      ],
     },
     time: {
       type: String,
@@ -34,12 +42,12 @@ const menuItemSchema = new mongoose.Schema(
     reviews: [reviewSchema],
     rating: {
       type: Number,
-      required: true,
+      // required: true,
       default: 0,
     },
     numReviews: {
       type: Number,
-      required: true,
+      // required: true,
       default: 0,
     },
     // added calories

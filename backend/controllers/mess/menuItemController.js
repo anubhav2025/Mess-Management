@@ -6,16 +6,12 @@ import MenuItem from "../../models/menuItemModel.js";
 // @access  Private
 const createMenuItem = asyncHandler(async (req, res) => {
   try {
-    const { menuId, day, time, reviews, rating, numReviews, calories } =
-      req.body;
+    const { menuId, day, time, calories } = req.body;
 
     const menuItem = await MenuItem.create({
       menuId,
       day,
       time,
-      reviews,
-      rating,
-      numReviews,
       calories,
     });
 
