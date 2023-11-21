@@ -10,7 +10,7 @@ import Complaint from "../../models/complaintModel.js";
 // });
 
 // @desc    Create a new request
-// @route   POST /api/requests/create
+// @route   POST /api/mess/requests/create
 // @access  {Specify access control as needed}
 const createRequest = async (req, res) => {
   try {
@@ -57,7 +57,7 @@ const createRequest = async (req, res) => {
 };
 
 // @desc    Get filtered requests
-// @route   GET /api/requests/filter
+// @route   GET /api/mess/requests/filter
 // @access  {Specify access control as needed}
 // DATE in YYYY-MM-DD
 const getFilteredRequests = async (req, res) => {
@@ -144,7 +144,7 @@ const getFilteredRequests = async (req, res) => {
 };
 
 // @desc    Approve a request
-// @route   PUT /api/requests/:id/approve
+// @route   PUT /api/mess/requests/:id/approve
 // @access  {Specify access control as needed}
 const approveRequest = asyncHandler(async (req, res) => {
   const requestId = req.params.id;
@@ -184,7 +184,7 @@ const approveRequest = asyncHandler(async (req, res) => {
 });
 
 // @desc    Forward a request from one staff member to another within the same mess
-// @route   PUT /api/requests/forward
+// @route   PUT /api/mess/requests/forward
 // @access  {Specify access control as needed}
 const forwardRequest = async (req, res) => {
   try {
@@ -246,7 +246,7 @@ const forwardRequest = async (req, res) => {
 };
 
 // @desc    Associate requests with each other
-// @route   POST /api/requests/associate
+// @route   POST /api/mess/requests/associate
 // @access  {Specify access control as needed}
 const associateRequests = async (req, res) => {
   try {
@@ -302,7 +302,7 @@ const associateRequests = async (req, res) => {
 };
 
 // @desc    Delete a request based on specified conditions
-// @route   DELETE /api/requests/:id
+// @route   DELETE /api/mess/requests/:id
 // @access  {Specify access control as needed}
 const deleteRequest = async (req, res) => {
   try {
@@ -361,7 +361,7 @@ const deleteRequest = async (req, res) => {
 };
 
 // @desc    Decline a request based on specified conditions
-// @route   PUT /api/requests/:id/decline
+// @route   PUT /api/mess/requests/:id/decline
 // @access  {Specify access control as needed}
 const declineRequest = async (req, res) => {
   try {
@@ -424,7 +424,7 @@ const declineRequest = async (req, res) => {
 };
 
 // @desc    Associate a complaint with a request
-// @route   PUT /api/complaints/associate
+// @route   PUT /api/mess/complaints/associate
 // @access  {Specify access control as needed}
 const associateComplaintWithRequest = async (req, res) => {
   try {
@@ -474,7 +474,7 @@ const associateComplaintWithRequest = async (req, res) => {
 };
 
 // @desc    Add a remark to a request
-// @route   PUT /api/requests/:id/add-remark
+// @route   PUT /api/mess/requests/:id/add-remark
 // @access  {Specify access control as needed}
 const addRemark = async (req, res) => {
   try {
@@ -520,7 +520,7 @@ const addRemark = async (req, res) => {
 };
 
 // @desc    Override approval for a request
-// @route   PUT /api/requests/:id/override-approval
+// @route   PUT /api/mess/requests/:id/override-approval
 // @access  {Specify access control as needed}
 const overrideApproval = async (req, res) => {
   try {
@@ -580,7 +580,7 @@ const overrideApproval = async (req, res) => {
 };
 
 // @desc    Override decline for a request
-// @route   PUT /api/requests/:id/override-decline
+// @route   PUT /api/mess/requests/:id/override-decline
 // @access  {Specify access control as needed}
 const overrideDecline = async (req, res) => {
   try {
