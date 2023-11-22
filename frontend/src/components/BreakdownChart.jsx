@@ -3,7 +3,7 @@
 // import { Box, Typography, useTheme } from "@mui/material";
 // import { useGetSalesQuery } from "state/api";
 
-// const BreakdownChart = ({ isDashboard = false }) => {
+const BreakdownChart = ({ isDashboard = false }) => {
 //   const { data, isLoading } = useGetSalesQuery();
 //   const theme = useTheme();
 
@@ -135,6 +135,6 @@
 //       </Box>
 //     </Box>
 //   );
-// };
+};
 
-// export default BreakdownChart;
+export default BreakdownChart;
