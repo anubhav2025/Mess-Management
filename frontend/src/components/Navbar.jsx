@@ -13,7 +13,7 @@ import DrawerComponent from "./Drawer";
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
-    padding: "20px",
+    padding: "0px",
     marginLeft: theme.spacing(5),
     display: "flex",
   },

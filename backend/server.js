@@ -4,7 +4,6 @@ import cookieParser from "cookie-parser";
 import router from "./routes/router.js";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
-import dashboardRoutes from "./routes/dashboardRoutes.js"
 
 import cors from "cors";
 
@@ -25,6 +24,5 @@ app.use(cookieParser());
 
 app.use("/api", router);
 app.use("/api/users", authRoutes);
-app.use("/api/dashboard", dashboardRoutes);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));

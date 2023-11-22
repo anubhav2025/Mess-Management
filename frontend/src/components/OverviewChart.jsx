@@ -3,7 +3,7 @@
 // import { useTheme } from "@mui/material";
 // import { useGetSalesQuery } from "state/api";
 
-// const OverviewChart = ({ isDashboard = false, view }) => {      // using useMemo makes sure data is recalculated only when dependencies change.
+const OverviewChart = ({ isDashboard = false, view }) => {      // using useMemo makes sure data is recalculated only when dependencies change.
 //   const theme = useTheme();
 //   const { data, isLoading } = useGetSalesQuery();
 
@@ -161,6 +161,6 @@
 //       }
 //     />
 //   );
-// };
+};
 
-// export default OverviewChart;
+export default OverviewChart;
