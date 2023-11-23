@@ -16,8 +16,8 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import BreakdownChart from "../../components/BreakdownChart";
-import OverviewChart from "../../components/OverviewChart";
+// import BreakdownChart from "../../components/BreakdownChart";
+// import OverviewChart from "../../components/OverviewChart";
 import { useGetDashboardQuery } from "../../state/api";
 import StatBox from "../../components/StatBox";
 
@@ -118,7 +118,7 @@ const Dashboard = () => {
           p="1rem"
           borderRadius="0.55rem"
         >
-          <OverviewChart view="sales" isDashboard={true} />
+          {/* <OverviewChart view="sales" isDashboard={true} /> */}
         </Box>
         <StatBox
           title="Monthly Sales"
@@ -190,7 +190,7 @@ const Dashboard = () => {
           <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
             Sales By Category
           </Typography>
-          <BreakdownChart isDashboard={true} />
+          {/* <BreakdownChart isDashboard={true} /> */}
           <Typography
             p="0 0.6rem"
             fontSize="0.8rem"

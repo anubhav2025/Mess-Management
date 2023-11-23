@@ -10,12 +10,11 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-// import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import { toast } from "react-toastify";
-import { useLoginMutation } from "../slices/userApiSlice";
+import { useLoginMutation } from '../state/api';
 import { setCredentials } from "../slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 

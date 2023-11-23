@@ -1,7 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BASE_URL } from '../constants';
+import { USERS_URL } from '../constants';
 
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   reducerPath: "adminApi",
   tagTypes: [
     "User",
@@ -14,47 +16,78 @@ export const api = createApi({
     "Performance",
     "Dashboard",
   ],
-  endpoints: (build) => ({
-    getUser: build.query({
-      query: (id) => `general/user/${id}`,
-      providesTags: ["User"],
-    }),
-    getProducts: build.query({
-      query: () => "client/products",
-      providesTags: ["Products"],
-    }),
-    getCustomers: build.query({
-      query: () => "client/customers",
-      providesTags: ["Customers"],
-    }),
-    getTransactions: build.query({              //THIS IS THE REAL ONE.
-      query: ({ page, pageSize, sort, search }) => ({
-        url: "client/transactions",
-        method: "GET",
-        params: { page, pageSize, sort, search },
-      }),
-      providesTags: ["Transactions"],
-    }),
-    getGeography: build.query({
-      query: () => "client/geography",
-      providesTags: ["Geography"],
-    }),
-    getSales: build.query({
-      query: () => "sales/sales",
-      providesTags: ["Sales"],
-    }),
-    getAdmins: build.query({
-      query: () => "management/admins",
-      providesTags: ["Admins"],
-    }),
-    getUserPerformance: build.query({
-      query: (id) => `management/performance/${id}`,
-      providesTags: ["Performance"],
-    }),
-    getDashboard: build.query({
+  endpoints: (builder) => ({
+    getDashboard: builder.query({
       query: () => "general/dashboard",
       providesTags: ["Dashboard"],
     }),
+    login: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/login`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    // register: builder.mutation({
+    // 	query: (data) => ({
+    // 		url: `${USERS_URL}`,
+    // 		method: "POST",
+    // 		body: data,
+    // 	}),
+    // }),
+    logout: builder.mutation({
+      query: () => ({
+        url: `${USERS_URL}/logout`,
+        method: "POST",
+      }),
+    }),
+    // profile: builder.mutation({
+    // 	query: (data) => ({
+    // 		url: `${USERS_URL}/profile`,
+    // 		method: "PUT",
+    // 		body: data,
+    // 	}),
+    // }),
+    // getUsers: builder.query({
+    // 	query: () => ({
+    // 		url: USERS_URL,
+    // 	}),
+    // 	providesTags: ["User"],
+    // 	keepUnusedDataFor: 5,
+    // }),
+    // deleteUser: builder.mutation({
+    // 	query: (userId) => ({
+    // 		url: `${USERS_URL}/${userId}`,
+    // 		method: "DELETE",
+    // 	}),
+    // }),
+    // getUserDetails: builder.query({
+    // 	query: (id) => ({
+    // 		url: `${USERS_URL}/${id}`,
+    // 	}),
+    // 	keepUnusedDataFor: 5,
+    // }),
+    // updateUser: builder.mutation({
+    // 	query: (data) => ({
+    // 		url: `${USERS_URL}/${data.userId}`,
+    // 		method: "PUT",
+    // 		body: data,
+    // 	}),
+    // 	invalidatesTags: ["User"],
+    // }),
+    getUser: builder.query({
+      query: (id) => `general/user/${id}`,
+      providesTags: ["User"],
+    }),
+    getProducts: builder.query({
+      query: () => "client/products",
+      providesTags: ["Products"],
+    }),
+    getCustomers: builder.query({
+      query: () => "client/customers",
+      providesTags: ["Customers"],
+    }),
+
   }),
 });
 
@@ -62,10 +95,13 @@ export const {
   useGetUserQuery,
   useGetProductsQuery,
   useGetCustomersQuery,
-  useGetTransactionsQuery,
-  useGetGeographyQuery,
-  useGetSalesQuery,
-  useGetAdminsQuery,
-  useGetUserPerformanceQuery,
   useGetDashboardQuery,
+  useLoginMutation,
+  useLogoutMutation,
+  // useRegisterMutation,
+  // useProfileMutation,
+  // useGetUsersQuery,
+  // useDeleteUserMutation,
+  // useUpdateUserMutation,
+  // useGetUserDetailsQuery,
 } = api;

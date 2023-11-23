@@ -19,77 +19,32 @@ import {
   HomeOutlined,
   ShoppingCartOutlined,
   Groups2Outlined,
-  ReceiptLongOutlined,
-  PublicOutlined,
-  PointOfSaleOutlined,
-  TodayOutlined,
-  CalendarMonthOutlined,
-  AdminPanelSettingsOutlined,
-  TrendingUpOutlined,
-  PieChartOutlined,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
 import profileImage from "../assets/profile.jpg";
 
+import { useDispatch, useSelector } from "react-redux";
+import { setCredentials } from "../slices/authSlice";
+
 const navItems = [
   {
     text: "Dashboard",
     icon: <HomeOutlined />,
   },
+  // {
+  //   text: "Client Facing",
+  //   icon: null,
+  // },
   {
-    text: "Client Facing",
-    icon: null,
-  },
-  {
-    text: "Products",
+    text: "Menu",
     icon: <ShoppingCartOutlined />,
   },
   {
-    text: "Customers",
+    text: "Complaints",
     icon: <Groups2Outlined />,
-  },
-  {
-    text: "Transactions",
-    icon: <ReceiptLongOutlined />,
-  },
-  {
-    text: "Geography",
-    icon: <PublicOutlined />,
-  },
-  {
-    text: "Sales",
-    icon: null,
-  },
-  {
-    text: "Overview",
-    icon: <PointOfSaleOutlined />,
-  },
-  {
-    text: "Daily",
-    icon: <TodayOutlined />,
-  },
-  {
-    text: "Monthly",
-    icon: <CalendarMonthOutlined />,
-  },
-  {
-    text: "Breakdown",
-    icon: <PieChartOutlined />,
-  },
-  {
-    text: "Management",
-    icon: null,
-  },
-  {
-    text: "Admin",
-    icon: <AdminPanelSettingsOutlined />,
-  },
-  {
-    text: "Performance",
-    icon: <TrendingUpOutlined />,
-  },
+  }
 ];
 
 const Sidebar = ({
@@ -99,14 +54,13 @@ const Sidebar = ({
   setIsSidebarOpen,
   isNonMobile,
 }) => {
-  const { pathname } = useLocation();     //curr location where we are
   const [active, setActive] = useState("");   //what page we are currently at.
   const navigate = useNavigate();
   const theme = useTheme();
 
-  useEffect(() => {
-    setActive(pathname.substring(1));
-  }, [pathname]);
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const role = (userInfo) ? (userInfo.fname) : "";
 
   return (
     <Box component="nav">
@@ -133,7 +87,7 @@ const Sidebar = ({
               <FlexBetween color={theme.palette.secondary.main}>
                 <Box display="flex" alignItems="center" gap="0.5rem">
                   <Typography variant="h4" fontWeight="bold">
-                    ADMIN
+                  Mess Master
                   </Typography>
                 </Box>
                 {/* if mobile, display a close button */}
@@ -214,13 +168,13 @@ const Sidebar = ({
                   fontSize="0.9rem"
                   sx={{ color: theme.palette.secondary[100] }}
                 >
-                  {user.name}
+                  {userInfo.fname}
                 </Typography>
                 <Typography
                   fontSize="0.8rem"
                   sx={{ color: theme.palette.secondary[200] }}
                 >
-                  {user.occupation}
+                  {userInfo.role}
                 </Typography>
               </Box>
               <SettingsOutlined
