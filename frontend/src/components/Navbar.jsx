@@ -11,6 +11,12 @@ import FlexBetween from "../components/FlexBetween";
 import { useDispatch } from "react-redux";
 import { setMode } from "../state";
 import profileImage from "../assets/profile.jpg";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
+import { removeCredentials } from "../slices/authSlice"
+import { useLogoutMutation } from "../state/api";
+
 import {
   AppBar,
   Button,
@@ -30,12 +36,28 @@ const Navbar = ({
   setIsSidebarOpen,
 }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
+
+  const [logoutApiCall] = useLogoutMutation();
+
+   const logoutHandler = async () => {
+      try {
+         await logoutApiCall().unwrap();
+         dispatch(removeCredentials());
+         navigate("/");
+         toast.info("Logged out successfully", { autoClose: 1000 });
+      }
+      catch (err) {
+         console.log(err);
+         toast.error(err?.data?.message || err.error);
+      }
+   };
 
   return (
     <AppBar
@@ -122,7 +144,7 @@ const Navbar = ({
               onClose={handleClose}
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             >
-              <MenuItem onClick={handleClose}>Log Out</MenuItem>
+              <MenuItem onClick={logoutHandler}>Log Out</MenuItem>
             </Menu>
           </FlexBetween>
 

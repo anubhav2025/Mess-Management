@@ -9,6 +9,8 @@ import Dashboard from "./screens/dashboard";
 import Products from "./screens/products";
 import Customers from "./screens/customers";
 import HomeScreen from "./screens/HomeScreen";
+import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -19,8 +21,9 @@ function App() {
         <CssBaseline />
         <Routes>
           <Route element={<Layout />}>    {/* will exist on every page. Eg, navbar and sidebar. */}
-            {/* <Route path="/" element={<Navigate to="/homescreen" replace />} /> */}
-            <Route path="/" element={<HomeScreen />} />
+            <Route index={true} path="/" element={<HomeScreen />} />
+            <Route path="/login" element={<LoginScreen />} />
+            <Route path="/register" element={<RegisterScreen />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/products" element={<Products />} />
             <Route path="/customers" element={<Customers />} />
