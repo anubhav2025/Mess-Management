@@ -31,7 +31,7 @@ import {
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
-import profileImage from "../assets/profile.jpeg";
+import profileImage from "../assets/profile.jpg";
 
 const navItems = [
   {
@@ -99,8 +99,8 @@ const Sidebar = ({
   setIsSidebarOpen,
   isNonMobile,
 }) => {
-  const { pathname } = useLocation(); //curr location where we are
-  const [active, setActive] = useState(""); //what page we are currently at.
+  const { pathname } = useLocation();     //curr location where we are
+  const [active, setActive] = useState("");   //what page we are currently at.
   const navigate = useNavigate();
   const theme = useTheme();
 
@@ -128,7 +128,7 @@ const Sidebar = ({
           }}
         >
           <Box width="100%">
-            {/* box for the logo START */}
+              {/* box for the logo START */}
             <Box m="1.5rem 2rem 2rem 3rem">
               <FlexBetween color={theme.palette.secondary.main}>
                 <Box display="flex" alignItems="center" gap="0.5rem">
@@ -144,7 +144,7 @@ const Sidebar = ({
                 )}
               </FlexBetween>
             </Box>
-            {/* box for the logo END */}
+              {/* box for the logo END */}
             <List>
               {navItems.map(({ text, icon }) => {
                 if (!icon) {
@@ -157,9 +157,7 @@ const Sidebar = ({
                 const lcText = text.toLowerCase();
 
                 return (
-                  <ListItem key={text} disablePadding>
-                    {" "}
-                    {/* removing disablePadding also gives it a nice distinctive look */}
+                  <ListItem key={text} disablePadding>  {/* removing disablePadding also gives it a nice distinctive look */}
                     <ListItemButton
                       onClick={() => {
                         navigate(`/${lcText}`);

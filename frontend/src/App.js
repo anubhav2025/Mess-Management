@@ -1,24 +1,34 @@
-import { Container } from "react-bootstrap";
-import { Outlet } from "react-router-dom";
-// import Header from './components/Header';
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { themeSettings } from "./theme";
+import Layout from "./screens/layout"
+import Dashboard from "./screens/dashboard";
+import Products from "./screens/products";
+import Customers from "./screens/customers";
+import HomeScreen from "./screens/HomeScreen";
 
-const App = () => {
+function App() {
+  const mode = useSelector((state) => state.global.mode);
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
-    <>
-      <ToastContainer />
-      <Navbar />
-      {/* <Header /> */}
-      <main className="py-3">
-        <Container>
-          <Outlet />
-        </Container>
-      </main>
-      <Footer />
-    </>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Routes>
+          <Route element={<Layout />}>    {/* will exist on every page. Eg, navbar and sidebar. */}
+            {/* <Route path="/" element={<Navigate to="/homescreen" replace />} /> */}
+            <Route path="/" element={<HomeScreen />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/customers" element={<Customers />} />
+          </Route>
+        </Routes>
+      </ThemeProvider>
+    </BrowserRouter>
   );
-};
+}
+
 export default App;
