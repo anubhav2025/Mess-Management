@@ -73,4 +73,4 @@ export const {
   // useDeleteUserMutation,
   // useUpdateUserMutation,
   // useGetUserDetailsQuery,
-} = api;
+};
