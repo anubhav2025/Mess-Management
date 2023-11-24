@@ -1,16 +1,6 @@
 import bcrypt from "bcryptjs";
 
 const studentMessManagers = [
-<<<<<<< HEAD
-  {
-    userId: "655a209877910d58566710e1",
-    wardenId: "655a22eca3920fb6e9989dc8",
-    regno: "20214065",
-    roomno: "102",
-    // pendingRequestsFromDown: "request-id-5",
-    // requestsForApproval: "request-id-6",
-  },
-=======
 	{
 		messId: "655274b2951333d3004ce568",
 		wardenId: "65526ece4269c175b7000746",
@@ -26,7 +16,6 @@ const studentMessManagers = [
 		// pendingRequestsFromDown: "request-id-5",
 		// requestsSentForApproval: "request-id-6",
 	},
->>>>>>> 21a87729ff74bce97368fbe3965c33623b285bd4
 ];
 
 export default studentMessManagers;

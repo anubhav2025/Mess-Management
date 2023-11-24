@@ -6,45 +6,47 @@ import MenuItem from "../../models/menuItemModel.js";
 // @route   POST /api/mess/menu/addMenu
 // @access  Public
 const createMenu = asyncHandler(async (req, res) => {
-  try {
-    // console.log(req.body);
-    const { messId } = req.body;
+	try {
+		// console.log(req.body);
+		const { messId } = req.body;
+		if (req.user && req.user?.messId !== messId) {
+			return res.status(500).json({ error: "Internal Server Error" });
+		}
+		const menu = await Menu.create({
+			messId: messId,
+			monday: [],
+			tuesday: [],
+			wednesday: [],
+			thursday: [],
+			friday: [],
+			saturday: [],
+			sunday: [],
+		});
+		// console.log("HELLO");
 
-    const menu = await Menu.create({
-      messId: messId,
-      monday: [],
-      tuesday: [],
-      wednesday: [],
-      thursday: [],
-      friday: [],
-      saturday: [],
-      sunday: [],
-    });
-    // console.log("HELLO");
-
-    return res.status(201).json(menu);
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: "Internal Server Error" });
-  }
+		return res.status(201).json(menu);
+	} catch (error) {
+		console.log(error);
+		return res.status(500).json({ error: "Internal Server Error" });
+	}
 });
 
 // @desc    Get Menu By Mess ID
 // @route   GET /api/mess/menu/:messId   here id is mess id
 // @access  Public
 const getMenuByMessId = asyncHandler(async (req, res) => {
-  try {
-    const messId = req.params.messId;
+	try {
+		const messId = req.params.messId;
 
-    // Execute the query to get the menu
-    const menu = await Menu.findOne({ messId: messId }).exec();
+		// Execute the query to get the menu
+		const menu = await Menu.findOne({ messId: messId }).exec();
 
-    console.log(menu);
-    return res.status(200).json(menu);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: "Internal Server Error" });
-  }
+		console.log(menu);
+		return res.status(200).json(menu);
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ error: "Internal Server Error" });
+	}
 });
 
 export { getMenuByMessId, createMenu };
