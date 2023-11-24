@@ -108,7 +108,7 @@ const MenuItems = () => {
 	const theme = useTheme();
 	const { userInfo } = useSelector((state) => state.auth);
 	// console.log(userInfo);
-	const { data, isLoading } = useGetMenuItemsQuery(userInfo.messId);
+	const { data, isLoading } = useGetMenuItemsQuery(userInfo?.messId);
 	console.log(!isLoading && data);
 	const isNonMobile = useMediaQuery("(min-width: 1000px)");
 
@@ -130,7 +130,7 @@ const MenuItems = () => {
 						"& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
 					}}
 				>
-					{data.map(
+					{data?.map(
 						({
 							_id,
 							itemName,

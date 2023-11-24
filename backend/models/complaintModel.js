@@ -3,6 +3,7 @@ import CollegeAdmin from "./users/collegeAdminModel.js";
 import User from "./users/userModel.js";
 import FoodItem from "./foodItemModel.js";
 import Comment from "./commentModel.js";
+import Mess from "./messModel.js";
 
 const complaintSchema = new mongoose.Schema(
 	{
@@ -32,7 +33,7 @@ const complaintSchema = new mongoose.Schema(
 		images: [
 			{
 				type: String,
-				required: true,
+				// required: true,
 			},
 		],
 		title: {

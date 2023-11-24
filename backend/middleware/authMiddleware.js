@@ -22,12 +22,17 @@ const allowedRoles = (
 
 		try {
 			const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
+			// console.log(!req.user);
+			// console.log(!requiredRoles.includes(decoded.role));
 			req.user = await User.findById(decoded.userId).select("-password");
+			// console.log(decoded.userId);
+			// console.log(req.user);
+			// console.log(toString(decoded.messId) !== toString(req.user.messId));
+
 			if (
 				!req.user ||
 				!requiredRoles.includes(decoded.role) ||
-				decoded.messId !== req.user.messId
+				toString(decoded.messId) !== toString(req.user.messId)
 			) {
 				return res.status(401).json({ message: "Not Authorized." }); //maybe not needed.
 			}

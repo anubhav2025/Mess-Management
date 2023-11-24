@@ -128,12 +128,13 @@ const getComplaintVotes = async (req, res) => {
 };
 
 // @desc    Create a new complaint
-// @route   POST /api/mess/complaints/mess
+// @route   POST /api/mess/complaints/create
 // @access  {Specify access control as needed}
 const createComplaint = async (req, res) => {
 	try {
 		const { itemId, title, description, images } = req.body;
 		const userId = req.user._id;
+		const imagesTemp = images ? images : [];
 
 		// Set itemAssociated based on the presence of itemId
 		const itemAssociated = !!itemId;
@@ -147,7 +148,7 @@ const createComplaint = async (req, res) => {
 			itemId: itemAssociated ? itemId : undefined,
 			title,
 			description,
-			images,
+			images: imagesTemp,
 			status: "Pending Review",
 			comments: [], // You might handle comments logic here if needed
 			upvotes: [],

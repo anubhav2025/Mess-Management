@@ -7,15 +7,10 @@ export const api = createApi({
 	reducerPath: "adminApi",
 	tagTypes: [
 		"User",
-		"Products",
-		"Customers",
-		"Transactions",
-		"Geography",
-		"Sales",
-		"Admins",
 		"Performance",
 		"Dashboard",
 		"MenuItems",
+		"FilteredComplaints",
 	],
 	endpoints: (builder) => ({
 		getDashboard: builder.query({
@@ -42,51 +37,9 @@ export const api = createApi({
 				method: "POST",
 			}),
 		}),
-		// profile: builder.mutation({
-		// 	query: (data) => ({
-		// 		url: `${USERS_URL}/profile`,
-		// 		method: "PUT",
-		// 		body: data,
-		// 	}),
-		// }),
-		// getUsers: builder.query({
-		// 	query: () => ({
-		// 		url: USERS_URL,
-		// 	}),
-		// 	providesTags: ["User"],
-		// 	keepUnusedDataFor: 5,
-		// }),
-		// deleteUser: builder.mutation({
-		// 	query: (userId) => ({
-		// 		url: `${USERS_URL}/${userId}`,
-		// 		method: "DELETE",
-		// 	}),
-		// }),
-		// getUserDetails: builder.query({
-		// 	query: (id) => ({
-		// 		url: `${USERS_URL}/${id}`,
-		// 	}),
-		// 	keepUnusedDataFor: 5,
-		// }),
-		// updateUser: builder.mutation({
-		// 	query: (data) => ({
-		// 		url: `${USERS_URL}/${data.userId}`,
-		// 		method: "PUT",
-		// 		body: data,
-		// 	}),
-		// 	invalidatesTags: ["User"],
-		// }),
 		getUser: builder.query({
 			query: (id) => `general/user/${id}`,
 			providesTags: ["User"],
-		}),
-		getProducts: builder.query({
-			query: () => "client/products",
-			providesTags: ["Products"],
-		}),
-		getCustomers: builder.query({
-			query: () => "client/customers",
-			providesTags: ["Customers"],
 		}),
 		getMenuItems: builder.query({
 			query: (messId) => ({
@@ -94,6 +47,14 @@ export const api = createApi({
 				method: "GET",
 			}),
 			providesTags: ["MenuItems"],
+		}),
+		getFilteredComplaints: builder.query({
+			query: (queryParams) => ({
+				url: `${BASE_URL}/api/mess/complaints/filter`,
+				method: "GET",
+				params: queryParams,
+			}),
+			providesTags: ["FilteredComplaints"], // Tag for caching purposes
 		}),
 	}),
 });
@@ -106,6 +67,7 @@ export const {
 	useLoginMutation,
 	useLogoutMutation,
 	useGetMenuItemsQuery,
+	useGetFilteredComplaintsQuery,
 	// useRegisterMutation,
 	// useProfileMutation,
 	// useGetUsersQuery,

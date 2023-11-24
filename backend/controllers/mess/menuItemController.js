@@ -49,7 +49,8 @@ const getMenuItemByMenuId = asyncHandler(async (req, res) => {
 const getMenuItemArrayByMessID = asyncHandler(async (req, res) => {
 	try {
 		// console.log("getMenuItemArrayByMessID called");
-		// console.log(req.params);
+		console.log(req.params);
+		// console.log(req.body);
 		const messId = req.params.messId;
 		const menuItems = await MenuItem.find({ messId });
 
