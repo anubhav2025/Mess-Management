@@ -36,6 +36,8 @@ import profileImage from "../assets/profile.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../slices/authSlice";
 
+import { textToRoute } from "../constants";
+
 const navItems = [
 	{
 		text: "Dashboard",
@@ -132,7 +134,7 @@ const Sidebar = ({
 										</Typography>
 									);
 								}
-								const lcText = text.toLowerCase();
+								const lcText = textToRoute[text.toLowerCase()];
 
 								return (
 									<ListItem key={text} disablePadding>

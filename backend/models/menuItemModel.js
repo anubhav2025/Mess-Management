@@ -31,7 +31,10 @@ const menuItemSchema = new mongoose.Schema(
 			required: true,
 			ref: "Mess",
 		},
-
+		seq: {
+			type: Number,
+			// required: true,
+		},
 		itemName: {
 			type: String,
 			required: true,
