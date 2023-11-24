@@ -13,6 +13,7 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import MenuItems from "./screens/menu/WeeklyMenu";
 import LatestMenuItems from "./screens/menu/LatestMenuItems";
+import LatestComplaints from "./screens/complaints/LatestComplaints";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -33,6 +34,7 @@ function App() {
             <Route path="/customers" element={<Customers />} />
             <Route path="/menu/weekly" element={<MenuItems />} />
             <Route path="/menu/items/all" element={<LatestMenuItems />} />
+            <Route path="/complaints/latest" element={<LatestComplaints />} />
           </Route>
         </Routes>
       </ThemeProvider>
