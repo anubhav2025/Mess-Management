@@ -10,11 +10,13 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+import { useTheme } from "@mui/material/styles";
+
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import { toast } from "react-toastify";
-import { useLoginMutation } from '../state/api';
+import { useLoginMutation } from "../state/api";
 import { setCredentials } from "../slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -36,11 +38,13 @@ function Copyright(props) {
   );
 }
 
-const defaultTheme = createTheme();
+// const defaultTheme = createTheme();
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const defaultTheme = useTheme();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
