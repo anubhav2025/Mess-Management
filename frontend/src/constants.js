@@ -8,6 +8,7 @@ const textToRoute = {
 	"add a complaint": "complaints/add",
 	latest: "complaints/latest",
 	"top voted": "complaints/top",
+	dashboard: "dashboard",
 };
 
 const timeNumToMeal = {
