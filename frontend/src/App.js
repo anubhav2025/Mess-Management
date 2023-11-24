@@ -12,6 +12,7 @@ import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import MenuItems from "./screens/menu/WeeklyMenu";
+import ComplaintForm from './screens/complaints/ComplaintForm';
 
 function App() {
 	const mode = useSelector((state) => state.global.mode);
@@ -31,6 +32,7 @@ function App() {
 						<Route path="/products" element={<Products />} />
 						<Route path="/customers" element={<Customers />} />
 						<Route path="/menu/weekly" element={<MenuItems />} />
+						<Route path="/complaints/add" element={<ComplaintForm />} />
 					</Route>
 				</Routes>
 			</ThemeProvider>

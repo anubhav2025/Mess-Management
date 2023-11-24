@@ -13,7 +13,7 @@ import { allowedRoles } from "../../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.get("/filter", getFilteredComplaints);
+router.get("/filter", allowedRoles("Student", "Accountant", "Warden", "SuperAdmin"), getFilteredComplaints);
 router.post(
 	"/create",
 	allowedRoles("Student", "Accountant", "Warden"),

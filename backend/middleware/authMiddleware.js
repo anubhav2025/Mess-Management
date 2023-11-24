@@ -15,6 +15,8 @@ const allowedRoles = (
 
 		// Read JWT from the 'jwt' cookie
 		token = req.cookies.jwt;
+		console.log(token);
+		// console.log(document.cookie);
 
 		if (!token) {
 			return res.status(401).json({ message: "Not authorized, no token" });
@@ -28,18 +30,21 @@ const allowedRoles = (
 			// console.log(decoded.userId);
 			// console.log(req.user);
 			// console.log(toString(decoded.messId) !== toString(req.user.messId));
+			console.log("middleware error");
 
 			if (
 				!req.user ||
 				!requiredRoles.includes(decoded.role) ||
 				toString(decoded.messId) !== toString(req.user.messId)
 			) {
+				console.log("middleware error");
 				return res.status(401).json({ message: "Not Authorized." }); //maybe not needed.
 			}
 
 			next();
 		} catch (error) {
 			console.error(error);
+			console.log("middleware error")
 			res.status(401).json({ message: "Not authorized, token failed" });
 		}
 	});
