@@ -55,6 +55,13 @@ export const api = createApi({
       }),
       providesTags: ["FilteredComplaints"], // Tag for caching purposes
     }),
+    createComplaints: builder.mutation({
+      query: (data) => ({
+        url: `${BASE_URL}/api/mess/complaints/create`,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -67,10 +74,11 @@ export const {
   useLogoutMutation,
   useGetMenuItemsQuery,
   useGetFilteredComplaintsQuery,
+  useCreateComplaintsMutation,
   // useRegisterMutation,
   // useProfileMutation,
   // useGetUsersQuery,
   // useDeleteUserMutation,
   // useUpdateUserMutation,
   // useGetUserDetailsQuery,
-};
+} = api;
