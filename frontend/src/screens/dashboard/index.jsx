@@ -28,33 +28,33 @@ const Dashboard = () => {
 
   const columns = [
     {
-      field: "_id",
-      headerName: "ID",
+      field: "TEST",
+      headerName: "TEST",
       flex: 1,
     },
-    {
-      field: "userId",
-      headerName: "User ID",
-      flex: 1,
-    },
-    {
-      field: "createdAt",
-      headerName: "CreatedAt",
-      flex: 1,
-    },
-    {
-      field: "products",
-      headerName: "# of Products",
-      flex: 0.5,
-      sortable: false,
-      renderCell: (params) => params.value.length,
-    },
-    {
-      field: "cost",
-      headerName: "Cost",
-      flex: 1,
-      renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
-    },
+    // {
+    //   field: "TEST",
+    //   headerName: "TEST",
+    //   flex: 1,
+    // },
+    // {
+    //   field: "TEST",
+    //   headerName: "TEST",
+    //   flex: 1,
+    // },
+    // {
+    //   field: "prsoduct",
+    //   headerName: "# of Products",
+    //   flex: 0.5,
+    //   sortable: false,
+    //   renderCell: (params) => params.value.length,
+    // },
+    // {
+    //   field: "cost",
+    //   headerName: "Cost",
+    //   flex: 1,
+    //   renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
+    // },
   ];
 
   return (
@@ -90,10 +90,10 @@ const Dashboard = () => {
       >
         {/* ROW 1 */}
         <StatBox
-          title="Total Customers"
-          value={data && data.totalCustomers}
+          title="TEST"
+          value="test"
           increase="+14%"
-          description="Since last month"
+          description="........."
           icon={
             <Email
               sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
@@ -101,12 +101,12 @@ const Dashboard = () => {
           }
         />
         <StatBox
-          title="Sales Today"
-          value={data && data.todayStats.totalSales}
-          increase="+21%"
-          description="Since last month"
+          title="TEST"
+          value="test"
+          increase="+14%"
+          description="........."
           icon={
-            <PointOfSale
+            <Email
               sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
             />
           }
@@ -121,6 +121,40 @@ const Dashboard = () => {
           {/* <OverviewChart view="sales" isDashboard={true} /> */}
         </Box>
         <StatBox
+          title="TEST"
+          value="test"
+          increase="+14%"
+          description="........."
+          icon={
+            <Email
+              sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+            />
+          }
+        />
+        <StatBox
+          title="TEST"
+          value="test"
+          increase="+14%"
+          description="........."
+          icon={
+            <Email
+              sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+            />
+          }
+        />
+        {/* <StatBox
+          title="TEST"
+          value={data && data.todayStats.totalSales}
+          increase="+21%"
+          description="Since last month"
+          icon={
+            <PointOfSale
+              sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+            />
+          }
+        /> */}
+
+        {/* <StatBox
           title="Monthly Sales"
           value={data && data.thisMonthStats.totalSales}
           increase="+5%"
@@ -130,8 +164,8 @@ const Dashboard = () => {
               sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
             />
           }
-        />
-        <StatBox
+        /> */}
+        {/* <StatBox
           title="Yearly Sales"
           value={data && data.yearlySalesTotal}
           increase="+43%"
@@ -141,7 +175,7 @@ const Dashboard = () => {
               sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
             />
           }
-        />
+        /> */}
 
         {/* ROW 2 */}
         <Box
@@ -188,7 +222,7 @@ const Dashboard = () => {
           borderRadius="0.55rem"
         >
           <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
-            Sales By Category
+            Cost Breakdown
           </Typography>
           {/* <BreakdownChart isDashboard={true} /> */}
           <Typography
@@ -196,8 +230,7 @@ const Dashboard = () => {
             fontSize="0.8rem"
             sx={{ color: theme.palette.secondary[200] }}
           >
-            Breakdown of real states and information via category for revenue
-            made for this year and total sales.
+            Cost per item today
           </Typography>
         </Box>
       </Box>
